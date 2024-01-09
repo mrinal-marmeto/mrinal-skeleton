@@ -1,0 +1,191 @@
+<script src="{{ tab.js | asset_url }}" defer></script>
+
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+
+<div class="section-{{ section.id }}-padding color-{{ section.settings.color_scheme }}">
+  <div class="page-width">
+    <h2 class="rich-text__heading rte inline-richtext {{ section.settings.heading_size }} {{ section.settings.content_alignment }}">
+      {{ section.settings.heading }}
+    </h2>
+    <tabbed-content class="tw-block tw-mt-8 {{ section.settings.content_alignment }}">
+      {% comment %} tab heading go here {% endcomment %}
+      {% assign tabHeadings = section.blocks | map: 'settings' | map: 'id' %}
+      <tab-headings class="tw-block">
+        {% for heading in tabHeadings %}
+          <tab {% if forloop.index == 1 %} data-active {% endif %} class="tw-cursor-pointer tw-px-4 data-[active]:tw-bg-[rgb(var(--color-foreground))] tw-py-2 data-[active]:tw-text-[rgb(var(--color-background))] tw-rounded-full" data-tab="{{ heading | handleize }}--{{ forloop.index }}">{{ heading }}</tab>
+        {% endfor %}
+      </tab-headings>
+      {% comment %} tab contents go here {% endcomment %}
+      <tab-contents class="tw-block tw-relative tw-mt-4">
+        {% for block in section.blocks %}
+          <tab {% if forloop.index == 1 %} data-active {% endif %} data-tab="{{ block.settings.id | handleize }}--{{ forloop.index }}" class="tw-absolute tw-top-0 tw-left-0 tw-opacity-0 data-[active]:tw-relative data-[active]:tw-opacity-100">
+            {{ block.settings.content }}
+          </tab>
+        {% endfor %}
+      </tab-contents>
+    </tabbed-content>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Tabbed Content",
+  "settings": [
+    {
+      "type": "inline_richtext",
+      "id": "heading",
+      "default": "Tabbed Content",
+      "label": "t:sections.rich-text.blocks.heading.settings.heading.label"
+    },
+    {
+      "type": "select",
+      "id": "heading_size",
+      "options": [
+        {
+          "value": "h2",
+          "label": "t:sections.all.heading_size.options__1.label"
+        },
+        {
+          "value": "h1",
+          "label": "t:sections.all.heading_size.options__2.label"
+        },
+        {
+          "value": "h0",
+          "label": "t:sections.all.heading_size.options__3.label"
+        },
+        {
+          "value": "hxl",
+          "label": "t:sections.all.heading_size.options__4.label"
+        }
+      ],
+      "default": "h1",
+      "label": "t:sections.all.heading_size.label"
+    },
+    {
+      "type": "select",
+      "id": "content_alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "t:sections.rich-text.settings.content_alignment.options__1.label"
+        },
+        {
+          "value": "center",
+          "label": "t:sections.rich-text.settings.content_alignment.options__2.label"
+        },
+        {
+          "value": "right",
+          "label": "t:sections.rich-text.settings.content_alignment.options__3.label"
+        }
+      ],
+      "default": "center",
+      "label": "t:sections.rich-text.settings.content_alignment.label"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.padding.section_padding_heading"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 52
+    },
+    {
+      "type": "select",
+      "id": "color_scheme",
+      "options": [
+        {
+          "value": "accent-1",
+          "label": "t:sections.all.colors.accent_1.label"
+        },
+        {
+          "value": "accent-2",
+          "label": "t:sections.all.colors.accent_2.label"
+        },
+        {
+          "value": "background-1",
+          "label": "t:sections.all.colors.background_1.label"
+        },
+        {
+          "value": "background-2",
+          "label": "t:sections.all.colors.background_2.label"
+        },
+        {
+          "value": "inverse",
+          "label": "t:sections.all.colors.inverse.label"
+        }
+      ],
+      "default": "background-1",
+      "label": "t:sections.all.colors.label"
+    }
+  ],
+  "blocks": [
+    {
+      "name": "Tab",
+      "type": "tab",
+      "settings": [
+        {
+          "type":"text",
+          "id":"id",
+          "label": "Tab Name / Title",
+          "default": "Tab Name"
+        },
+        {
+          "type": "richtext",
+          "id": "content",
+          "label": "Content",
+          "default": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</p>"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Tabbed Content",
+      "blocks": [
+        {
+          "type": "tab",
+          "settings": {
+            "id": "Lorem Tab 1",
+            "content": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.<\/p>"
+          }
+        },
+        {
+          "type": "tab",
+          "settings": {
+            "id": "Lorem Tab 2",
+            "content": "<p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.<\/p>"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

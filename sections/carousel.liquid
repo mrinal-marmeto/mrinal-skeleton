@@ -1,0 +1,155 @@
+{%- capture lazy_load_section %}
+    {%- render 'lazy-load-section-validations' -%}
+{%- endcapture -%}
+  
+{% if lazy_load_section != blank %}
+    <lazy-section>
+{% endif %}
+  
+    {% if lazy_load_section == blank %} 
+
+        <script src="{{ 'carousel.js' | asset_url }}" defer="defer"></script>
+
+        {% style %}
+        #carousel--{{ section.id }} {
+            display: block;
+            padding-top: {{ section.settings.section-padding-top | times: 0.75 | round: 0 | append: 'px'  }};
+            padding-bottom: {{ section.settings.section-padding-bottom | times: 0.75 | round: 0 | append: 'px'  }};
+        }
+        @media screen and (min-width: 750px) {
+            #carousel--{{ section.id }} {
+                padding-top: {{ section.settings.section-padding-top | append: 'px'  }};
+                padding-bottom: {{ section.settings.section-padding-bottom | append: 'px'  }};
+            }
+        }
+        {% endstyle %}
+
+        <carousel-component id="carousel--{{ section.id }}" class="page-width splide"
+            data-autoplay="{{ section.settings.enable_autoplay | default: false }}"
+            data-autoplay-speed="{{ section.settings.autoplay_speed | times: 1000 | default: 3000  }}"
+            data-desktopperpage="{{ section.settings.slides_perpage | default: 3 }}"
+            data-pagination="{{ section.settings.enable_pagination }}"
+        >
+            {% if section.settings.section_heading != blank %}
+                <div class="h1 {{ section.settings.heading_align }} tw-mb-8">{{ section.settings.section_heading }}</div>
+            {% endif %}
+            <div class="splide__track">
+                <ul class="splide__list">
+                    {%- for block in section.blocks -%}
+                        <li class="splide__slide">
+                            {% render 'dummy-content-card' %}
+                        </li>
+                    {%- endfor -%}
+                </ul>
+            </div>
+        </carousel-component>
+
+    {% endif %}       
+    
+{% if lazy_load_section != blank %}
+    </lazy-section>
+{% endif %}
+
+{% schema %}
+    {
+        "name":"Carousel",
+        "tag":"section",
+        "settings": [
+            {
+                "type":"header",
+                "content": "SECTION SETTINGS"
+            },
+            {
+                "type": "text",
+                "id": "section_heading",
+                "label": "Heading",
+                "default": "Heading"
+            },
+            {
+                "type": "select",
+                "id":"heading_align",
+                "label": "Heading align",
+                "options": [
+                    {
+                        "label": "Left",
+                        "value": "tw-text-left"
+                    },
+                    {
+                        "label": "Center",
+                        "value": "tw-text-center"
+                    },
+                    {
+                        "label": "Right",
+                        "value": "tw-text-right"
+                    }
+                ],
+                "default": "tw-text-center"
+            },
+            {
+                "type":"header",
+                "content":"SLIDER SETTINGS"
+            },
+            {
+                "type": "checkbox",
+                "id":"enable_pagination",
+                "label": "Pagedots",
+                "default": false
+            },
+            {
+                "type": "checkbox",
+                "id":"enable_autoplay",
+                "label": "Autoplay",
+                "default": false
+            },
+            {
+                "type":"range",
+                "id": "autoplay_speed",
+                "label": "Autoplay interval",
+                "min": 2,
+                "max": 6,
+                "default": 3,
+                "info": "Default 3s"
+            },
+            {
+                "type": "number",
+                "id": "slides_perpage",
+                "label": "Slides perpage",
+                "default": 3,
+                "info": "Default 3 slides"
+            },
+            {
+                "type": "range",
+                "id": "section-padding-top",
+                "label": "Padding top",
+                "default": 0,
+                "min": 0,
+                "max": 100
+            },
+            {
+                "type": "range",
+                "id": "section-padding-bottom",
+                "label": "Padding bottom",
+                "default": 0,
+                "min": 0,
+                "max": 100
+            }
+        ],
+        "blocks": [
+            {
+                "name": "Carousel Block",
+                "type": "carousel_block",
+                "settings": [
+                    {
+                        "type":"header",
+                        "content": "REPLACE THE THE SETTINGS WITH CUSTOM SETTINGS"
+                    }
+                ]
+            }
+        ],
+        "presets": [
+            {
+                "name":"Carousel"
+            }
+        ]
+    }
+{% endschema %}

@@ -1,0 +1,277 @@
+{% comment %}
+** Mega menu - homepage partial **
+- Section gets appended under level 1 link at header.liquid.
+- section.settings.parent should match the link.heading. 
+- Uses blocks
+- @Functionality - component-megamenu-item.js
+{% endcomment %}
+
+{%- capture lazy_load_section %}
+  {%- render 'lazy-load-section-validations' -%}
+{%- endcapture -%}
+
+{% if lazy_load_section != blank %}
+  <lazy-section data-trigger-target="body" data-trigger-event="mouseover">
+{% endif %}
+
+{% if lazy_load_section == blank %}
+
+
+<javascript-injected-section style="display:none" data-target-location='[data-submenu="{{ section.settings.parent | handleize }}"]'>
+  
+  <div class="page-width-desktop mm_dropdown" {{ section.index }}>
+    <span class="tw-block h3">{{ section.settings.heading }}</span>
+    <span class="tw-block tw-mb-8 h5">{{ section.settings.subheading }}</span>
+    <div class="mm-megamenu--content tw-flex">
+      <div>
+        <div class="mm-megamenu--column__menuitems tw-grid tw-grid-cols-2 tw-gap-4">
+          <ul class="menu-drawer__menu has-submenu list-menu" role="list">
+            {{ section.settings.menu | json }}
+              {%- for link in section.settings.menu.links -%}
+                <li>
+                  {%- if link.links != blank -%}
+                    <details id="Details-menu-drawer-menu-item-{{ forloop.index }}">
+                      <summary
+                        id="HeaderDrawer-{{ link.handle }}"
+                        class="menu-drawer__menu-item list-menu__item link link--text focus-inset{% if link.child_active %} menu-drawer__menu-item--active{% endif %}"
+                      >
+                        {{ link.title | escape }}
+                        {% render 'icon-arrow' %}
+                        {% render 'icon-caret' %}
+                      </summary>
+                      <div
+                        id="link-{{ link.handle | escape }}"
+                        class="menu-drawer__submenu has-submenu gradient motion-reduce"
+                        tabindex="-1"
+                      >
+                        <div class="menu-drawer__inner-submenu">
+                          <button class="menu-drawer__close-button link link--text focus-inset" aria-expanded="true">
+                            {% render 'icon-arrow' %}
+                            {{ link.title | escape }}
+                          </button>
+                          <ul class="menu-drawer__menu list-menu" role="list" tabindex="-1">
+                            {%- for childlink in link.links -%}
+                              <li>
+                                {%- if childlink.links == blank -%}
+                                  <a
+                                    id="HeaderDrawer-{{ link.handle }}-{{ childlink.handle }}"
+                                    href="{{ childlink.url }}"
+                                    class="menu-drawer__menu-item link link--text list-menu__item focus-inset{% if childlink.current %} menu-drawer__menu-item--active{% endif %}"
+                                    {% if childlink.current %}
+                                      aria-current="page"
+                                    {% endif %}
+                                  >
+                                    {{ childlink.title | escape }}
+                                  </a>
+                                {%- else -%}
+                                  <details id="Details-menu-drawer-{{ link.handle }}-{{ childlink.handle }}">
+                                    <summary
+                                      id="HeaderDrawer-{{ link.handle }}-{{ childlink.handle }}"
+                                      class="menu-drawer__menu-item link link--text list-menu__item focus-inset"
+                                    >
+                                      {{ childlink.title | escape }}
+                                      {% render 'icon-arrow' %}
+                                      {% render 'icon-caret' %}
+                                    </summary>
+                                    <div
+                                      id="childlink-{{ childlink.handle | escape }}"
+                                      class="menu-drawer__submenu has-submenu gradient motion-reduce"
+                                    >
+                                      <button
+                                        class="menu-drawer__close-button link link--text focus-inset"
+                                        aria-expanded="true"
+                                      >
+                                        {% render 'icon-arrow' %}
+                                        {{ childlink.title | escape }}
+                                      </button>
+                                      <ul
+                                        class="menu-drawer__menu list-menu"
+                                        role="list"
+                                        tabindex="-1"
+                                      >
+                                        {%- for grandchildlink in childlink.links -%}
+                                          <li>
+                                            <a
+                                              id="HeaderDrawer-{{ link.handle }}-{{ childlink.handle }}-{{ grandchildlink.handle }}"
+                                              href="{{ grandchildlink.url }}"
+                                              class="menu-drawer__menu-item link link--text list-menu__item focus-inset{% if grandchildlink.current %} menu-drawer__menu-item--active{% endif %}"
+                                              {% if grandchildlink.current %}
+                                                aria-current="page"
+                                              {% endif %}
+                                            >
+                                              {{ grandchildlink.title | escape }}
+                                            </a>
+                                          </li>
+                                        {%- endfor -%}
+                                      </ul>
+                                    </div>
+                                  </details>
+                                {%- endif -%}
+                              </li>
+                            {%- endfor -%}
+                          </ul>
+                        </div>
+                      </div>
+                    </details>
+                  {%- else -%}
+                    <a
+                      id="HeaderDrawer-{{ link.handle }}"
+                      href="{{ link.url }}"
+                      class="menu-drawer__menu-item list-menu__item link link--text focus-inset{% if link.current %} menu-drawer__menu-item--active{% endif %}"
+                      {% if link.current %}
+                        aria-current="page"
+                      {% endif %}
+                    >
+                      {{ link.title | escape }}
+                    </a>
+                  {%- endif -%}
+                </li>
+              {%- endfor -%}
+            </ul>
+  
+          {% for block in section.blocks %}
+            <div class="mm-megamenu--column__menuitem" {{ block.shopify_attributes }}>
+              <a href="{{ block.settings.link_url }}" class="tw-flex tw-gap-1">
+                {% if block.settings.link_image != blank %}
+                  {{ block.settings.link_image | image_url: width: 40 | image_tag }}
+                {% endif %}
+                <div>
+                  <span class="menuitem--heading h4 tw-block" >{{ block.settings.link_text }}</span>
+                  <span class="menuitem--description" >{{ block.settings.link_description }}</span>
+                </div>
+              </a>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+      <div class="mm-megamenu--image tw-max-w-xs">
+        {% if section.settings.image != blank %}
+         {{ section.settings.image | image_url: width: 320 | image_tag }}
+        {% endif %}
+  
+        {% if section.settings.image_heading != blank %}
+          <h4 class="tw-pt-2 tw-font-bold tw-h4">{{ section.settings.image_heading }}</h4>
+        {% endif %}
+  
+        {% if section.settings.image_subheading != blank %}
+          <div class="tw-pt-2 p">{{ section.settings.image_subheading }}</div>
+        {% endif %}
+  
+        {% if section.settings.image_button_text != blank %}
+          <a href="{{ section.settings.image_button_link }}" class="tw-flex tw-items-center tw-justify-center tw-w-full tw-gap-4 tw-mt-8 tw-align-middle tw-btn tw-btn--primary">
+            {{ section.settings.image_button_text }}
+            <svg xmlns="http://www.w3.org/2000/svg" width="15" height="16" viewBox="0 0 15 16"><defs><style>.a,.b,.c{fill:#fff;}.a{opacity:0;}.ba{fill:#fff !important;}.c{fill-rule:evenodd;}</style></defs><g transform="translate(-53.912 -1.687)"><rect class="a" width="15" height="16" transform="translate(53.912 1.687)"/><g transform="translate(55.022 3.311)"><path class="ba" d="M1518,753.747a.55.55,0,0,1,.549-.549h4.17l-1.264-1.26a.55.55,0,0,1,.78-.777l2.2,2.2a.55.55,0,0,1,0,.777l-2.2,2.2a.55.55,0,0,1-.78-.777l1.264-1.26h-4.17A.55.55,0,0,1,1518,753.747Z" transform="translate(-1514.704 -747.155)"/><path class="c" d="M1518.592,757.184a6.592,6.592,0,1,0-6.592-6.592A6.591,6.591,0,0,0,1518.592,757.184Zm0-1.1a5.493,5.493,0,1,0-5.493-5.493A5.494,5.494,0,0,0,1518.592,756.085Z" transform="translate(-1512 -744)"/></g></g></svg>
+          </a>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</javascript-injected-section>
+
+{% endif %}       
+       
+{% if lazy_load_section != blank %}
+    </lazy-section>
+{% endif %}
+
+{% schema %}
+  {
+    "name": "Mega menu item demo 1",
+    "class": "mega-menu-section",
+    "enabled_on": {
+      "groups": ["header"]
+    },
+    "max_blocks": 8,
+    "settings": [
+      {
+        "type": "text",
+        "id": "parent",
+        "label": "Link heading",
+        "info": "The mega menu will appear below this parent link"
+      },
+      {
+        "type": "text",
+        "id": "heading",
+        "label": "Heading"
+      },
+      {
+        "type": "text",
+        "id": "subheading",
+        "label": "Subheading"
+      },
+      {
+        "type": "link_list",
+        "id": "menu",
+        "label": "Menu"
+      },
+      {
+        "type": "header",
+        "content": "Image Settings"
+      },
+      {
+        "type": "image_picker",
+        "id": "image",
+        "label": "Image"
+      },
+      {
+        "type": "text",
+        "id": "image_heading",
+        "label": "heading"
+      },
+      {
+        "type": "richtext",
+        "id": "image_subheading",
+        "label": "Subheading"
+      },
+      {
+        "type": "text",
+        "id": "image_button_text",
+        "label": "Button text"
+      },
+      {
+        "type": "url",
+        "id": "image_button_link",
+        "label": "Button link"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "column",
+        "name": "Column",
+        "settings": [
+          {
+            "type": "header",
+            "content": "Navigation"
+          },
+          {
+            "type": "image_picker",
+            "id": "link_image",
+            "label": "Menu Item Icon"
+          },
+          {
+            "type": "text",
+            "id": "link_text",
+            "default": "I-series",
+            "label": "Link heading"
+          },
+          {
+            "type": "text",
+            "id": "link_description",
+            "default": "Lorem ipsum dolor sit amet, consectetur adipiscing",
+            "label": "Link Description"
+          },
+          {
+            "id": "link_url",
+            "type": "url",
+            "label": "Link URL"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Mega Menu Item demo 1"
+      }
+    ]
+  }
+{% endschema %}

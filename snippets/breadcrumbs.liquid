@@ -1,0 +1,81 @@
+<style>
+    .breadcrumbs li:not(:last-child):after {
+        content: "›\00a0";
+        display: inline-block;
+        padding-left: .75ch;
+        speak: none;
+    }
+</style>
+
+{% unless template == 'index' or template == 'cart' or template == 'list-collections' or template == '404' %}
+    {% assign t = template | split: '.' | first %}
+
+    <nav class="breadcrumbs page-width tw-text-[0.85em] tw-my-3" role="navigation" aria-label="breadcrumbs">
+        <ol class="tw-list-none tw-m-0 tw-p-0">
+            <li class="tw-inline-block">
+                <a class="tw-underline" href="/" title="Home">Home</a>
+            </li>
+
+        {% case t %}
+            {% when 'page' %}
+                <li class="tw-inline-block">
+                    <a class="tw-underline" href="{{ page.url }}" class="tw-text-inherit tw-font-[normal] tw-no-underline hover:tw-underline focus:tw-underline" aria-current="page" >{{ page.title }}</a>
+                </li>
+
+            {% when 'product' %}
+
+                {% if collection.url %}
+                <li class="tw-inline-block">
+                    {{ collection.title | link_to: collection.url }}
+                </li>
+                {% endif %}
+
+                <li class="tw-inline-block">
+                    <a class="tw-underline" href="{{ product.url }}" class="tw-text-inherit tw-font-[normal] tw-no-underline hover:tw-underline focus:tw-underline" aria-current="page" >{{ product.title }}</a>
+                </li>
+
+            {% when 'collection' and collection.handle %}
+
+                {% if current_tags %}
+                <li class="tw-inline-block">{{ collection.title | link_to: collection.url }}</li>
+                <li class="tw-inline-block">
+                    {% capture tag_url %}{{ collection.url }}/{{ current_tags | join: "+"}}{% endcapture %}
+                    <a class="tw-underline" href="{{ tag_url }}" class="tw-text-inherit tw-font-[normal] tw-no-underline hover:tw-underline focus:tw-underline" aria-current="page" >{{ current_tags | join: " + "}}</a>
+                </li>
+                {% else %}
+                <li class="tw-inline-block">
+                    <a class="tw-underline" href="{{ collection.url }}" class="tw-text-inherit tw-font-[normal] tw-no-underline hover:tw-underline focus:tw-underline" aria-current="page" >{{ collection.title }}</a>
+                </li>
+                {% endif %}
+
+            {% when 'blog' %}
+
+                {% if current_tags %}
+                <li class="tw-inline-block">{{ blog.title | link_to: blog.url }}</li>
+                <li class="tw-inline-block">
+                    {% capture tag_url %}{{blog.url}}/tagged/{{ current_tags | join: "+" }}{% endcapture %}
+                    <a class="tw-underline" href="{{ tag_url }}" class="tw-text-inherit tw-font-[normal] tw-no-underline hover:tw-underline focus:tw-underline" aria-current="page" >{{ current_tags | join: " + " }}</a>
+                </li>
+                {% else %}
+                <li class="tw-inline-block">
+                    <a class="tw-underline" href="{{ blog.url }}" class="tw-text-inherit tw-font-[normal] tw-no-underline hover:tw-underline focus:tw-underline" aria-current="page" >{{ blog.title }}</a>
+                </li>
+                {% endif %}
+
+            {% when 'article' %}
+
+                <li class="tw-inline-block">{{ blog.title | link_to: blog.url }}</li>
+                <li class="tw-inline-block">
+                    <a class="tw-underline" href="{{ article.url }}" class="tw-text-inherit tw-font-[normal] tw-no-underline hover:tw-underline focus:tw-underline" aria-current="page" >{{ article.title }}</a>
+                </li>
+
+            {% else %}
+
+                <li class="tw-text-inherit tw-font-[normal] tw-no-underline hover:tw-underline focus:tw-underline" aria-current="page" >
+                    <a class="tw-underline" href="{{ request.path }}" class="tw-text-inherit tw-font-[normal] tw-no-underline hover:tw-underline focus:tw-underline" aria-current="page" >{{ page_title }}</a>
+                </li>
+        {% endcase %}
+
+        </ol>
+    </nav>
+{% endunless %}

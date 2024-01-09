@@ -1,0 +1,621 @@
+{
+  "sections": {
+    "3fe7c8be-5899-4e5d-9802-e0af9980a81f": {
+      "type": "slideshow",
+      "blocks": {
+        "00eb27cf-4970-4b8b-80a9-caf265729feb": {
+          "type": "carousel_block",
+          "settings": {
+            "image_desktop": "shopify:\/\/shop_images\/Banner_-_desktop.png",
+            "image_mobile": "shopify:\/\/shop_images\/white-bowl-surrounded-by-herbs-chilis-and-lime-slices.jpg"
+          }
+        },
+        "26cad0da-0c18-4f04-9211-f8aa7a4a094c": {
+          "type": "carousel_block",
+          "disabled": true,
+          "settings": {
+            "image_desktop": "shopify:\/\/shop_images\/rack-of-womens-clothing.jpg"
+          }
+        },
+        "729df925-fa5e-46d7-ba36-3558ab8f4e28": {
+          "type": "carousel_block",
+          "disabled": true,
+          "settings": {
+            "image_desktop": "shopify:\/\/shop_images\/a-hand-removes-a-sweater-from-a-clothing-rack.jpg"
+          }
+        }
+      },
+      "block_order": [
+        "00eb27cf-4970-4b8b-80a9-caf265729feb",
+        "26cad0da-0c18-4f04-9211-f8aa7a4a094c",
+        "729df925-fa5e-46d7-ba36-3558ab8f4e28"
+      ],
+      "settings": {
+        "enable_pagination": false,
+        "enable_arrows": true,
+        "enable_autoplay": false,
+        "autoplay_speed": 3,
+        "section-padding-top": 0,
+        "section-padding-bottom": 0
+      }
+    },
+    "rich_text": {
+      "type": "rich-text",
+      "blocks": {
+        "heading": {
+          "type": "heading",
+          "settings": {
+            "heading": "Talk about your brand",
+            "heading_size": "h1"
+          }
+        },
+        "text": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Share information about your brand with your customers. Describe a product, make announcements, or welcome customers to your store.<\/p>"
+          }
+        }
+      },
+      "block_order": [
+        "heading",
+        "text"
+      ],
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "background-1",
+        "full_width": true,
+        "padding_top": 40,
+        "padding_bottom": 0
+      }
+    },
+    "featured_collection": {
+      "type": "featured-collection",
+      "settings": {
+        "title": "Featured products",
+        "heading_size": "h2",
+        "description": "",
+        "show_description": false,
+        "collection": "all",
+        "products_to_show": 16,
+        "full_width": false,
+        "show_view_all": true,
+        "view_all_style": "outline",
+        "color_scheme": "background-1",
+        "enable_quick_view": false,
+        "enable_mobile_slider": true,
+        "enable_desktop_slider": true,
+        "show_arrows": true,
+        "show_arrows_on_mobile": true,
+        "show_dots": true,
+        "show_dots_on_mobile": true,
+        "enable_autoplay": false,
+        "autoplay_speed": 3,
+        "desktop_per_page": 4,
+        "mobile_per_page": 1,
+        "mobile_padding_left": 0,
+        "mobile_padding_right": 20,
+        "gap_between_slides_on_desktop": 2,
+        "gap_between_slides_on_mobile": 2,
+        "padding_top": 28,
+        "padding_bottom": 36
+      }
+    },
+    "60c6c5f7-a53f-4f0e-8c7f-ac8a2ffd94ae": {
+      "type": "featured-collection",
+      "settings": {
+        "title": "Featured collection 1",
+        "heading_size": "h1",
+        "description": "",
+        "show_description": false,
+        "collection": "atlanta-braves",
+        "products_to_show": 4,
+        "full_width": false,
+        "show_view_all": true,
+        "view_all_style": "solid",
+        "color_scheme": "",
+        "enable_quick_view": false,
+        "enable_mobile_slider": true,
+        "enable_desktop_slider": true,
+        "show_arrows": true,
+        "show_arrows_on_mobile": true,
+        "show_dots": true,
+        "show_dots_on_mobile": true,
+        "enable_autoplay": false,
+        "autoplay_speed": 3,
+        "desktop_per_page": 3,
+        "mobile_per_page": 1,
+        "mobile_padding_left": 0,
+        "mobile_padding_right": 20,
+        "gap_between_slides_on_desktop": 2,
+        "gap_between_slides_on_mobile": 2,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "8e8a1697-d92a-4a2c-ba5d-566f9a300e86": {
+      "type": "featured-collection",
+      "settings": {
+        "title": "Featured collection 2",
+        "heading_size": "h1",
+        "description": "",
+        "show_description": false,
+        "collection": "boston-red-sox-1",
+        "products_to_show": 4,
+        "full_width": false,
+        "show_view_all": true,
+        "view_all_style": "solid",
+        "color_scheme": "",
+        "enable_quick_view": false,
+        "enable_mobile_slider": true,
+        "enable_desktop_slider": true,
+        "show_arrows": true,
+        "show_arrows_on_mobile": true,
+        "show_dots": true,
+        "show_dots_on_mobile": true,
+        "enable_autoplay": false,
+        "autoplay_speed": 3,
+        "desktop_per_page": 4,
+        "mobile_per_page": 1,
+        "mobile_padding_left": 0,
+        "mobile_padding_right": 20,
+        "gap_between_slides_on_desktop": 2,
+        "gap_between_slides_on_mobile": 2,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "8797126e-2d65-4707-adf9-645294230ae3": {
+      "type": "featured-collection",
+      "settings": {
+        "title": "Featured collection 3",
+        "heading_size": "h1",
+        "description": "",
+        "show_description": false,
+        "collection": "frontpage",
+        "products_to_show": 4,
+        "full_width": false,
+        "show_view_all": true,
+        "view_all_style": "solid",
+        "color_scheme": "",
+        "enable_quick_view": false,
+        "enable_mobile_slider": true,
+        "enable_desktop_slider": true,
+        "show_arrows": true,
+        "show_arrows_on_mobile": true,
+        "show_dots": true,
+        "show_dots_on_mobile": true,
+        "enable_autoplay": false,
+        "autoplay_speed": 3,
+        "desktop_per_page": 4,
+        "mobile_per_page": 1,
+        "mobile_padding_left": 0,
+        "mobile_padding_right": 20,
+        "gap_between_slides_on_desktop": 2,
+        "gap_between_slides_on_mobile": 2,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "9a510a73-b8d3-4825-aef7-5ffe8a9fe572": {
+      "type": "featured-collection",
+      "settings": {
+        "title": "Featured collection 4",
+        "heading_size": "h1",
+        "description": "",
+        "show_description": false,
+        "collection": "baltimore-orioles",
+        "products_to_show": 4,
+        "full_width": false,
+        "show_view_all": true,
+        "view_all_style": "solid",
+        "color_scheme": "",
+        "enable_quick_view": false,
+        "enable_mobile_slider": true,
+        "enable_desktop_slider": true,
+        "show_arrows": true,
+        "show_arrows_on_mobile": true,
+        "show_dots": true,
+        "show_dots_on_mobile": true,
+        "enable_autoplay": false,
+        "autoplay_speed": 3,
+        "desktop_per_page": 4,
+        "mobile_per_page": 1,
+        "mobile_padding_left": 0,
+        "mobile_padding_right": 20,
+        "gap_between_slides_on_desktop": 2,
+        "gap_between_slides_on_mobile": 2,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "3dea34de-2697-4373-9288-b29bcc9e12a7": {
+      "type": "featured-collection",
+      "settings": {
+        "title": "Featured collection 5",
+        "heading_size": "h1",
+        "description": "",
+        "show_description": false,
+        "collection": "atlanta-braves",
+        "products_to_show": 4,
+        "full_width": false,
+        "show_view_all": true,
+        "view_all_style": "solid",
+        "color_scheme": "",
+        "enable_quick_view": false,
+        "enable_mobile_slider": true,
+        "enable_desktop_slider": true,
+        "show_arrows": true,
+        "show_arrows_on_mobile": true,
+        "show_dots": true,
+        "show_dots_on_mobile": true,
+        "enable_autoplay": false,
+        "autoplay_speed": 3,
+        "desktop_per_page": 4,
+        "mobile_per_page": 1,
+        "mobile_padding_left": 0,
+        "mobile_padding_right": 20,
+        "gap_between_slides_on_desktop": 2,
+        "gap_between_slides_on_mobile": 2,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "f8e4c2bf-b0d7-465b-b26a-5f48def4ab61": {
+      "type": "featured-collection",
+      "settings": {
+        "title": "Featured collection 6",
+        "heading_size": "h1",
+        "description": "",
+        "show_description": false,
+        "collection": "baltimore-orioles",
+        "products_to_show": 4,
+        "full_width": false,
+        "show_view_all": true,
+        "view_all_style": "solid",
+        "color_scheme": "",
+        "enable_quick_view": false,
+        "enable_mobile_slider": true,
+        "enable_desktop_slider": true,
+        "show_arrows": true,
+        "show_arrows_on_mobile": true,
+        "show_dots": true,
+        "show_dots_on_mobile": true,
+        "enable_autoplay": false,
+        "autoplay_speed": 3,
+        "desktop_per_page": 4,
+        "mobile_per_page": 1,
+        "mobile_padding_left": 0,
+        "mobile_padding_right": 20,
+        "gap_between_slides_on_desktop": 2,
+        "gap_between_slides_on_mobile": 2,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "collage": {
+      "type": "collage",
+      "blocks": {
+        "collection-0": {
+          "type": "collection",
+          "settings": {
+            "collection": "philadephia-phillies"
+          }
+        },
+        "product": {
+          "type": "product",
+          "settings": {
+            "product": "antique-drawers",
+            "second_image": false
+          }
+        },
+        "collection-1": {
+          "type": "collection",
+          "settings": {
+            "collection": "baltimore-orioles"
+          }
+        }
+      },
+      "block_order": [
+        "collection-0",
+        "product",
+        "collection-1"
+      ],
+      "settings": {
+        "heading": "Multimedia collage",
+        "heading_size": "h2",
+        "desktop_layout": "left",
+        "mobile_layout": "collage",
+        "card_styles": "product-card-wrapper",
+        "color_scheme": "background-1",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "video": {
+      "type": "video",
+      "settings": {
+        "heading": "",
+        "heading_size": "h1",
+        "enable_video_looping": false,
+        "video_url": "https:\/\/www.youtube.com\/watch?v=_9VUPq3SxOc",
+        "description": "",
+        "full_width": false,
+        "color_scheme": "background-1",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "multicolumn": {
+      "type": "multicolumn",
+      "blocks": {
+        "column1": {
+          "type": "column",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/autumn-photographer-taking-picture.jpg",
+            "title": "Column",
+            "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.<\/p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column2": {
+          "type": "column",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/fall-vegetable-box.jpg",
+            "title": "Column",
+            "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.<\/p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column3": {
+          "type": "column",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/autumn-trees-hillside.jpg",
+            "title": "Column",
+            "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.<\/p>",
+            "link_label": "",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "column1",
+        "column2",
+        "column3"
+      ],
+      "settings": {
+        "title": "",
+        "heading_size": "h1",
+        "image_width": "third",
+        "image_ratio": "adapt",
+        "columns_desktop": 3,
+        "column_alignment": "center",
+        "background_style": "none",
+        "button_label": "",
+        "button_link": "",
+        "color_scheme": "background-1",
+        "columns_mobile": "1",
+        "swipe_on_mobile": false,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "6aa12a9d-c825-4264-ba7b-3b0978633bbf": {
+      "type": "rich-text",
+      "blocks": {
+        "template--21525248213314__6aa12a9d-c825-4264-ba7b-3b0978633bbf-heading-1": {
+          "type": "heading",
+          "settings": {
+            "heading": "Talk about your brand",
+            "heading_size": "h1"
+          }
+        },
+        "template--21525248213314__6aa12a9d-c825-4264-ba7b-3b0978633bbf-text-1": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Share information about your brand with your customers. Describe a product, make announcements, or welcome customers to your store.<\/p>"
+          }
+        },
+        "template--21525248213314__6aa12a9d-c825-4264-ba7b-3b0978633bbf-button-1": {
+          "type": "button",
+          "settings": {
+            "button_label": "Button label",
+            "button_link": "",
+            "button_style_secondary": false,
+            "button_label_2": "",
+            "button_link_2": "",
+            "button_style_secondary_2": false
+          }
+        }
+      },
+      "block_order": [
+        "template--21525248213314__6aa12a9d-c825-4264-ba7b-3b0978633bbf-heading-1",
+        "template--21525248213314__6aa12a9d-c825-4264-ba7b-3b0978633bbf-text-1",
+        "template--21525248213314__6aa12a9d-c825-4264-ba7b-3b0978633bbf-button-1"
+      ],
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "accent-1",
+        "full_width": true,
+        "padding_top": 40,
+        "padding_bottom": 52
+      }
+    },
+    "34ea2b2c-ed1d-40f4-8210-12a60720a2dc": {
+      "type": "image-with-text",
+      "blocks": {
+        "template--21525248213314__34ea2b2c-ed1d-40f4-8210-12a60720a2dc-heading-1": {
+          "type": "heading",
+          "settings": {
+            "heading": "Image with text",
+            "heading_size": "h1"
+          }
+        },
+        "template--21525248213314__34ea2b2c-ed1d-40f4-8210-12a60720a2dc-text-1": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.<\/p>",
+            "text_style": "body"
+          }
+        },
+        "template--21525248213314__34ea2b2c-ed1d-40f4-8210-12a60720a2dc-button-1": {
+          "type": "button",
+          "settings": {
+            "button_label": "Button label",
+            "button_link": "",
+            "button_style_secondary": false
+          }
+        }
+      },
+      "block_order": [
+        "template--21525248213314__34ea2b2c-ed1d-40f4-8210-12a60720a2dc-heading-1",
+        "template--21525248213314__34ea2b2c-ed1d-40f4-8210-12a60720a2dc-text-1",
+        "template--21525248213314__34ea2b2c-ed1d-40f4-8210-12a60720a2dc-button-1"
+      ],
+      "settings": {
+        "image": "shopify:\/\/shop_images\/a-hand-removes-a-sweater-from-a-clothing-rack.jpg",
+        "height": "adapt",
+        "desktop_image_width": "medium",
+        "layout": "image_first",
+        "desktop_content_position": "top",
+        "desktop_content_alignment": "left",
+        "content_layout": "no-overlap",
+        "color_scheme": "",
+        "image_behavior": "none",
+        "mobile_content_alignment": "left",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "948c5634-f98c-484b-9691-1f97e1afcdd2": {
+      "type": "collage",
+      "blocks": {
+        "template--21525248213314__948c5634-f98c-484b-9691-1f97e1afcdd2-image-1": {
+          "type": "image",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/close-up-of-a-bao-bun-on-a-wooden-table.jpg"
+          }
+        },
+        "template--21525248213314__948c5634-f98c-484b-9691-1f97e1afcdd2-product-1": {
+          "type": "product",
+          "settings": {
+            "product": "copper-light",
+            "second_image": false
+          }
+        },
+        "template--21525248213314__948c5634-f98c-484b-9691-1f97e1afcdd2-collection-1": {
+          "type": "collection",
+          "settings": {
+            "collection": "boston-red-sox-1"
+          }
+        }
+      },
+      "block_order": [
+        "template--21525248213314__948c5634-f98c-484b-9691-1f97e1afcdd2-image-1",
+        "template--21525248213314__948c5634-f98c-484b-9691-1f97e1afcdd2-product-1",
+        "template--21525248213314__948c5634-f98c-484b-9691-1f97e1afcdd2-collection-1"
+      ],
+      "settings": {
+        "heading": "Multimedia collage",
+        "heading_size": "h1",
+        "desktop_layout": "left",
+        "mobile_layout": "column",
+        "card_styles": "product-card-wrapper",
+        "color_scheme": "",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "178231f4-27ca-4261-a23f-069798cd84fb": {
+      "type": "carousel",
+      "blocks": {
+        "d273af40-f9f7-479b-9226-b2a4cee1e618": {
+          "type": "carousel_block",
+          "settings": {
+          }
+        }
+      },
+      "block_order": [
+        "d273af40-f9f7-479b-9226-b2a4cee1e618"
+      ],
+      "settings": {
+        "section_heading": "Heading",
+        "heading_align": "tw-text-center",
+        "enable_pagination": false,
+        "enable_autoplay": false,
+        "autoplay_speed": 3,
+        "slides_perpage": 3,
+        "section-padding-top": 0,
+        "section-padding-bottom": 0
+      }
+    },
+    "fda8cf5f-dbce-4072-a912-499c1f5f511f": {
+      "type": "image-with-text",
+      "blocks": {
+        "template--21525248213314__fda8cf5f-dbce-4072-a912-499c1f5f511f-heading-1": {
+          "type": "heading",
+          "settings": {
+            "heading": "Image with text",
+            "heading_size": "h1"
+          }
+        },
+        "template--21525248213314__fda8cf5f-dbce-4072-a912-499c1f5f511f-text-1": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.<\/p>",
+            "text_style": "body"
+          }
+        },
+        "template--21525248213314__fda8cf5f-dbce-4072-a912-499c1f5f511f-button-1": {
+          "type": "button",
+          "settings": {
+            "button_label": "Button label",
+            "button_link": "",
+            "button_style_secondary": false
+          }
+        }
+      },
+      "block_order": [
+        "template--21525248213314__fda8cf5f-dbce-4072-a912-499c1f5f511f-heading-1",
+        "template--21525248213314__fda8cf5f-dbce-4072-a912-499c1f5f511f-text-1",
+        "template--21525248213314__fda8cf5f-dbce-4072-a912-499c1f5f511f-button-1"
+      ],
+      "settings": {
+        "image": "shopify:\/\/shop_images\/fashionable-man-in-hat.jpg",
+        "height": "adapt",
+        "desktop_image_width": "small",
+        "layout": "text_first",
+        "desktop_content_position": "top",
+        "desktop_content_alignment": "left",
+        "content_layout": "no-overlap",
+        "color_scheme": "",
+        "image_behavior": "none",
+        "mobile_content_alignment": "left",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    }
+  },
+  "order": [
+    "3fe7c8be-5899-4e5d-9802-e0af9980a81f",
+    "rich_text",
+    "featured_collection",
+    "60c6c5f7-a53f-4f0e-8c7f-ac8a2ffd94ae",
+    "8e8a1697-d92a-4a2c-ba5d-566f9a300e86",
+    "8797126e-2d65-4707-adf9-645294230ae3",
+    "9a510a73-b8d3-4825-aef7-5ffe8a9fe572",
+    "3dea34de-2697-4373-9288-b29bcc9e12a7",
+    "f8e4c2bf-b0d7-465b-b26a-5f48def4ab61",
+    "collage",
+    "video",
+    "multicolumn",
+    "6aa12a9d-c825-4264-ba7b-3b0978633bbf",
+    "34ea2b2c-ed1d-40f4-8210-12a60720a2dc",
+    "948c5634-f98c-484b-9691-1f97e1afcdd2",
+    "178231f4-27ca-4261-a23f-069798cd84fb",
+    "fda8cf5f-dbce-4072-a912-499c1f5f511f"
+  ]
+}

@@ -1,0 +1,151 @@
+/*
+  Based on TailwindCSS recommendations,
+  consider using classes instead of the `@apply` directive
+  @see https://tailwindcss.com/docs/reusing-styles#avoiding-premature-abstraction
+*/
+
+/* Adding Google Fonts  from a URL*/
+@import url("https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+/* Adding custom fonts */
+@font-face {
+  font-family: "Noto Sans";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  /* Shopify File asset URL for the font */
+  src: url("https://cdn.shopify.com/s/files/1/0565/0510/6474/files/NotoSans-Regular.ttf?v=1648033933");}
+
+@font-face {
+  font-family: "Noto Sans";
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  /* Shopify File asset URL for the font */
+  src: url("https://cdn.shopify.com/s/files/1/0565/0510/6474/files/NotoSans-Italic.ttf?v=1648033933");
+}
+
+@font-face {
+  font-family: "Noto Sans";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  /* Shopify File asset URL for the font */
+  src: url("https://cdn.shopify.com/s/files/1/0565/0510/6474/files/NotoSans-Bold.ttf?v=1648033933");
+}
+
+@font-face {
+  font-family: "Noto Sans";
+  font-style: italic;
+  font-weight: 700;
+  font-display: swap;
+  /* Shopify File asset URL for the font */
+  src: url("https://cdn.shopify.com/s/files/1/0565/0510/6474/files/NotoSans-BoldItalic.ttf?v=1648033932");
+}
+
+@layer base {
+  /* Default font-family for the theme */
+  html {
+    @apply tw-text-[10px];
+  }
+
+  body {
+    @apply tw-tracking-[0.06rem];
+    @apply tw-font-primary;
+    @apply tw-text-body-m sm:tw-text-body;
+  }
+
+  h0,
+  h1,
+  .h1,
+  h2,
+  .h2,
+  h3,
+  .h3,
+  h4,
+  .h4,
+  h5,
+  .h5 {
+    @apply tw-text-black;
+    word-break: break-word;
+    @apply tw-font-primary;
+  }
+
+  .h0 {
+    @apply tw-text-h0-m sm:tw-text-h0;
+  }
+
+  h1,
+  .h1 {
+    @apply tw-text-h1-m sm:tw-text-h1;
+  }
+
+  h2,
+  .h2 {
+    @apply tw-text-h2-m sm:tw-text-h2;
+  }
+
+  h3,
+  .h3 {
+    @apply tw-text-h3-m sm:tw-text-h3;
+  }
+
+  h4,
+  .h4 {
+    @apply tw-text-h4-m sm:tw-text-h4;
+  }
+
+  h5,
+  .h5 {
+    @apply tw-text-h5-m sm:tw-text-h5;
+  }
+
+  p,
+  .p {
+    @apply tw-text-body-m sm:tw-text-body;
+  }
+
+  small,
+  .small,
+  .text-body {
+    @apply tw-text-body-small-m sm:tw-text-body-small;
+  }
+
+  a,
+  .a {
+    @apply tw-text-blue-700 tw-text-body-m sm:tw-text-body;
+  }
+
+  blockquote {
+    @apply tw-italic tw-pl-4 tw-border-l-[0.2rem] tw-border-solid;
+  }
+
+  @media screen and (min-width: 750px) {
+    blockquote {
+      @apply tw-pl-6;
+    }
+  }
+
+  .caption {
+    @apply tw-tracking-[0.07rem] tw-leading-[1.7];
+  }
+
+  @media screen and (min-width: 750px) {
+    .caption {
+      @apply tw-text-[1.2rem];
+    }
+  }
+
+  .caption-with-letter-spacing {
+    @apply tw-tracking-[0.13rem] tw-leading-[1.2] tw-uppercase;
+  }
+
+  .caption-large,
+  .customer .field input,
+  .customer select,
+  .field__input,
+  .form__label,
+  .select__select {
+    @apply tw-text-[1.3rem] tw-leading-normal tw-tracking-[0.04rem];
+  }
+}

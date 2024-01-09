@@ -1,0 +1,11 @@
+config.js
+.gitignore
+.env
+package-lock.json
+package.json
+README.md
+release-notes.md
+tailwind.config.js
+.github
+.vscode
+_styles

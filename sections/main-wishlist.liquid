@@ -1,0 +1,248 @@
+{% comment %} Use the below code as the starting template for sections {% endcomment %}
+
+{%- style -%}
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+      padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+    }
+  
+    @media screen and (min-width: 750px) {
+      .section-{{ section.id }}-padding {
+        padding-top: {{ section.settings.padding_top }}px;
+        padding-bottom: {{ section.settings.padding_bottom }}px;
+      }
+    }
+  {%- endstyle -%}
+  
+  <div class="section-{{ section.id }}-padding color-{{ section.settings.color_scheme }}">
+    <div class="page-width {{ section.settings.content_alignment }}">
+      <h2 class="rich-text__heading rte inline-richtext {{ section.settings.heading_size }}">
+        {{ section.settings.heading }}
+      </h2>
+      <p class="rich-text__caption {{ section.settings.text_style }} {{ section.settings.text_style }}--{{ section.settings.text_size }}">
+        {{ section.settings.caption | escape }}
+      </p>
+      <div class="rich-text__text rte">
+        {{ section.settings.text }}
+      </div>
+      {%- paginate customer.metafields.marmeto.wishlist.value by 4 -%}
+        {% assign total_pages = paginate.pages %}
+        {% assign collection_current_page = paginate.current_page %}
+
+        {% if section.settings.enable_infinite_scrolling %}
+          <load-previous-page 
+            class="button hidden tw-my-10 tw-w-full" 
+            data-currentPage="{{ collection_current_page }}" 
+            data-totalpages="{{ total_pages }}" 
+            data-page-param="{{ paginate.page_param }}"
+          >
+
+            LOAD PREVIOUS PAGE
+            <div class="loading-overlay__spinner">
+              <svg aria-hidden="true" focusable="false" role="presentation" class="spinner" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
+                <circle class="path" fill="none" stroke-width="6" cx="33" cy="33" r="30"></circle>
+              </svg>
+            </div>
+          </load-previous-page>
+        {% endif %}
+        <div id="product-grid" class="tw-grid tw-gap-6 tw-grid-cols-2 md:tw-grid-cols-4 tw-pt-8">
+
+          {% for wishlist_item in customer.metafields.marmeto.wishlist.value %}
+            {% render 'product-card', 
+                product: wishlist_item,
+                removeDeselectedWishlistCard: true
+            %}
+          {% endfor %}
+        </div>
+        {% if section.settings.enable_infinite_scrolling %}
+            {% comment %}
+            -This element is for infinite scrolling
+            -Removing it will halt the functionality
+            {% endcomment %}
+            <infinite-page-loader data-totalpages="{{ total_pages }}" data-section="{{ section.id }}" data-currentPage="{{ collection_current_page }}" data-page-param="{{ paginate.page_param }}">
+                <div class="hidden center tw-mx-auto tw-w-12">
+                    <svg aria-hidden="true" focusable="false" role="presentation" class="spinner" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
+                    <circle class="path" fill="none" stroke-width="6" cx="33" cy="33" r="30"></circle>
+                    </svg>
+                </div>
+            </infinite-page-loader>
+
+        {% elsif section.settings.enable_infinite_scrolling == false and paginate.pages > 1 %}
+            {% render 'pagination', paginate: paginate, anchor: '' %}
+        {%- endif -%}
+      {%- endpaginate -%}
+    </div>
+  </div>
+  
+  {% schema %}
+  {
+    "name": "Main wishlist",
+    "settings": [
+      {
+        "type": "inline_richtext",
+        "id": "heading",
+        "default": "Heading",
+        "label": "t:sections.rich-text.blocks.heading.settings.heading.label"
+      },
+      {
+        "type": "select",
+        "id": "heading_size",
+        "options": [
+          {
+            "value": "h2",
+            "label": "t:sections.all.heading_size.options__1.label"
+          },
+          {
+            "value": "h1",
+            "label": "t:sections.all.heading_size.options__2.label"
+          },
+          {
+            "value": "h0",
+            "label": "t:sections.all.heading_size.options__3.label"
+          },
+          {
+            "value": "hxl",
+            "label": "t:sections.all.heading_size.options__4.label"
+          }
+        ],
+        "default": "h1",
+        "label": "t:sections.all.heading_size.label"
+      },
+      {
+          "type": "richtext",
+          "id": "text",
+          "default": "<p>Share information about your brand with your customers. Describe a product, make announcements, or welcome customers to your store.</p>",
+          "label": "t:sections.rich-text.blocks.text.settings.text.label"
+      },
+      {
+          "type": "text",
+          "id": "caption",
+          "default": "Add a tagline",
+          "label": "t:sections.rich-text.blocks.caption.settings.text.label"
+      },
+      {
+          "type": "select",
+          "id": "text_style",
+          "options": [
+          {
+              "value": "subtitle",
+              "label": "t:sections.rich-text.blocks.caption.settings.text_style.options__1.label"
+          },
+          {
+              "value": "caption-with-letter-spacing",
+              "label": "t:sections.rich-text.blocks.caption.settings.text_style.options__2.label"
+          }
+          ],
+          "default": "caption-with-letter-spacing",
+          "label": "t:sections.rich-text.blocks.caption.settings.text_style.label"
+      },
+      {
+          "type": "select",
+          "id": "text_size",
+          "options": [
+          {
+              "value": "small",
+              "label": "t:sections.rich-text.blocks.caption.settings.caption_size.options__1.label"
+          },
+          {
+              "value": "medium",
+              "label": "t:sections.rich-text.blocks.caption.settings.caption_size.options__2.label"
+          },
+          {
+              "value": "large",
+              "label": "t:sections.rich-text.blocks.caption.settings.caption_size.options__3.label"
+          }
+          ],
+          "default": "medium",
+          "label": "t:sections.rich-text.blocks.caption.settings.caption_size.label"
+      },
+      {
+        "type": "select",
+        "id": "content_alignment",
+        "options": [
+          {
+            "value": "left",
+            "label": "t:sections.rich-text.settings.content_alignment.options__1.label"
+          },
+          {
+            "value": "center",
+            "label": "t:sections.rich-text.settings.content_alignment.options__2.label"
+          },
+          {
+            "value": "right",
+            "label": "t:sections.rich-text.settings.content_alignment.options__3.label"
+          }
+        ],
+        "default": "center",
+        "label": "t:sections.rich-text.settings.content_alignment.label"
+      },
+      {
+      "type": "header",
+      "content": "Infinite scrolling"
+        },
+        {
+        "type": "checkbox",
+        "id": "enable_infinite_scrolling",
+        "label": "Enable infinite scrolling",
+        "default": true
+        },
+      {
+        "type": "header",
+        "content": "t:sections.all.padding.section_padding_heading"
+      },
+      {
+        "type": "range",
+        "id": "padding_top",
+        "min": 0,
+        "max": 100,
+        "step": 4,
+        "unit": "px",
+        "label": "t:sections.all.padding.padding_top",
+        "default": 40
+      },
+      {
+        "type": "range",
+        "id": "padding_bottom",
+        "min": 0,
+        "max": 100,
+        "step": 4,
+        "unit": "px",
+        "label": "t:sections.all.padding.padding_bottom",
+        "default": 52
+      },
+      {
+        "type": "select",
+        "id": "color_scheme",
+        "options": [
+          {
+            "value": "accent-1",
+            "label": "t:sections.all.colors.accent_1.label"
+          },
+          {
+            "value": "accent-2",
+            "label": "t:sections.all.colors.accent_2.label"
+          },
+          {
+            "value": "background-1",
+            "label": "t:sections.all.colors.background_1.label"
+          },
+          {
+            "value": "background-2",
+            "label": "t:sections.all.colors.background_2.label"
+          },
+          {
+            "value": "inverse",
+            "label": "t:sections.all.colors.inverse.label"
+          }
+        ],
+        "default": "background-1",
+        "label": "t:sections.all.colors.label"
+      }
+    ],
+    "presets": [
+      {
+          "name":"Main Wishlist"
+      }
+    ]
+  }
+  {% endschema %}

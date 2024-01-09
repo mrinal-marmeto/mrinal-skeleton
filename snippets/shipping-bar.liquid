@@ -1,0 +1,48 @@
+{% if settings.enable_shippingbar %}
+    {% comment %} ---- LOGIC START --- {% endcomment %}
+
+{% assign max = 0 %}
+{% assign next_goal_text = '' %}
+{% assign cart_value = cart.total_price | divided_by: 100.00  %}
+
+{% for index in (1..3) %}
+    {% assign s_goal_value = "goal_value_" | append: index  %}
+    {% assign s_goal_name = "goal_name_" | append: index  %}
+    {% assign goal_value = settings[s_goal_value] | times: 1.00 %}
+    {% if max < goal_value %}
+        {% assign max = goal_value %}
+    {% endif %}
+    {% if cart_value < goal_value %}
+        {% assign balance = goal_value | minus: cart_value | times: 100 | money %}
+        {% comment %} Add $value more for $goal {% endcomment %}
+        {% assign next_goal_text = settings.next_goal_text | replace: '$value', balance | replace: '$goal', settings[s_goal_name] %}
+    {% endif %}
+{% endfor %}
+
+{% assign progress = cart_value | divided_by: max | times: 100 %}
+
+{% comment %} ---- LOGIC END --- {% endcomment %}
+
+<shipping-bar-container>
+<div class="h4 tw-text-center">{% if next_goal_text != blank %}{{ next_goal_text }}{% else %}{{ settings.all_goal_complete_text }}{% endif %}</div>
+<div id="mm-shipping-bar" data-author="Dhanush" class=" tw-flex tw-h-[40px] tw-my-6 tw-items-center tw-relative tw-ml-[15px] tw-mr-[40px]">
+    <div class="tw-w-full tw-h-2 tw-rounded-full tw-bg-slate-200">
+        {%- for index in (1..3) -%}
+            {% assign s_goal_value = "goal_value_" | append: index  %}
+            {% assign s_goal_name = "goal_name_" | append: index  %}
+            {% assign s_goal_icon = "icon_" | append: index  %}
+            {% if settings[s_goal_value] != blank and settings[s_goal_name] != blank and settings[s_goal_icon] != blank %}
+                {% assign goal_value_temp = settings[s_goal_value] | times: 1.00 %}
+                {% assign css_left = goal_value_temp | divided_by: max | times: 100  %}
+                <div id="goal-name--{{ settings[goal_name] | handle }}" style="left: {{ css_left }}%; transform: translateX(-50%);" class="goal-icon-container {% if cart_value > goal_value_temp %} tw-bg-green-700 tw-text-white {% else %} tw-bg-slate-100 {% endif %} tw-absolute tw-w-[40px] tw-h-[40px] tw-translate-x-[-100%] tw-top-0 tw-flex tw-items-center tw-justify-center tw-rounded-full">
+                    {{ settings[s_goal_icon] }}
+                </div>
+            {% endif %}
+        {%- endfor -%}
+        <div style="width: {{ progress | at_most: 100 }}%;" class="tw-block tw-bg-green-700 tw-h-full tw-rounded-2xl"> </div>
+    </div>
+</div>
+
+</shipping-bar-container>
+
+{% endif %}

@@ -1,0 +1,18 @@
+<script src="{{ 'pincode-checker.js' | asset_url }}" defer="defer"></script>
+
+<h4 class="tw-pt-5">{{ block.settings.heading }}</h4>
+
+<pincode-checker class="tw-max-w-[44rem]">
+  <div class="field tw-flex">
+    <input
+      id="pincode-{{ block.id }}"
+      type="text"
+      class="field__input"
+      placeholder="Enter Pincode">
+    <label for="pincode-{{ block.id }}" class="field__label">{{ block.settings.placeholder_text }}</label>
+    <button class="button">{{ block.settings.button_text }}</button>
+  </div>
+  <p class="hidden success" data-pincode-success>{{ block.settings.pincode_available_message }}</p>
+  <p class="hidden failure" data-pincode-failure>{{ block.settings.pincode_unavailable_message }}</p>
+  <p class="hidden success" data-pincode-estdelivery>Estimated Delivery Time: [est_Days]</p>
+</pincode-checker>

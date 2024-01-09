@@ -1,0 +1,160 @@
+{%- capture lazy_load_section %}
+    {%- render 'lazy-load-section-validations' -%}
+{%- endcapture -%}
+  
+{% if lazy_load_section != blank %}
+    <lazy-section>
+{% endif %}
+  
+    {% if lazy_load_section == blank %}  
+
+        {% style %}
+        #accordion--{{ section.id }}{
+            padding-top: {{ section.settings.section-padding-top | times: 0.75 | round: 0 | append: 'px'  }};
+            padding-bottom: {{ section.settings.section-padding-bottom | times: 0.75 | round: 0 | append: 'px'  }};
+        }
+        @media screen and (min-width: 750px) {
+            #accordion--{{ section.id }}{
+                padding-top: {{ section.settings.section-padding-top | append: 'px'  }};
+                padding-bottom: {{ section.settings.section-padding-bottom | append: 'px'  }};
+            }
+        }
+        .detail--{{ section.id }} svg.icon-plus, .detail--{{ section.id }}[open] svg.icon-minus{
+            display: block;
+            width: 16px;
+            height: 16px;
+        }
+        .detail--{{ section.id }}[open] svg.icon-plus, .detail--{{ section.id }} svg.icon-minus{
+            display: none;
+        }
+        {% endstyle %}
+
+        <div id="accordion--{{ section.id }}" class="page-width">
+            {% if section.settings.section_heading != blank %}
+                <div class="h1 {{ section.settings.heading_align }} tw-mb-8">{{ section.settings.section_heading }}</div>
+            {% endif %}
+            {% for content in section.blocks %}
+                <details class="tw-p-2 detail--{{ section.id }}">
+                    <summary class="tw-flex tw-justify-between">
+                        <div class="h3">{{ content.settings.summary }}</div>
+                        <div class="summary--icons">
+                            <span class="icon-plus">{% render 'icon-plus' %}</span>
+                            <span class="icon-minus">{% render 'icon-minus' %}</span>
+                        </div>
+                    </summary>
+                    <div>{{ content.settings.details }}</div>
+                </details>
+            {% endfor %}
+        </div>
+
+    {% endif %}       
+       
+{% if lazy_load_section != blank %}
+    </lazy-section>
+{% endif %}
+
+{% schema %}
+    {
+        "name":"Accordion",
+        "max_blocks": 10,
+        "class": "section",
+        "blocks": [
+            {
+                "type":"content",
+                "name":"content",
+                "settings": [
+                    {
+                        "type":"text",
+                        "id":"summary",
+                        "label": "Summary",
+                        "default": "Accordion"
+                    },
+                    {
+                        "type": "richtext",
+                        "id":"details",
+                        "label":"Details",
+                        "default":"<p>loream ipsum, text goes here</p>"
+                    }
+                ]
+            }
+        ],
+        "settings": [
+            {
+                "type": "header",
+                "content": "SECTION SETTINGS"
+            },
+            {
+                "type": "text",
+                "id":"section_heading",
+                "label":"Heading",
+                "default":"FAQ"
+            },
+            {
+                "type": "select",
+                "id":"heading_align",
+                "label": "Heading align",
+                "options": [
+                    {
+                        "label": "Left",
+                        "value": "tw-text-left"
+                    },
+                    {
+                        "label": "Center",
+                        "value": "tw-text-center"
+                    },
+                    {
+                        "label": "Right",
+                        "value": "tw-text-right"
+                    }
+                ],
+                "default": "tw-text-center"
+            },
+            {
+                "type":"checkbox",
+                "id":"close_inactive_accordions",
+                "label":"Close inactive accordions",
+                "default": true
+            },
+            {
+                "type": "range",
+                "id": "section-padding-top",
+                "label": "Padding top",
+                "default": 0,
+                "min": 0,
+                "max": 100
+            },
+            {
+                "type": "range",
+                "id": "section-padding-bottom",
+                "label": "Padding bottom",
+                "default": 0,
+                "min": 0,
+                "max": 100
+            }
+        ],
+        "presets": [
+            {
+                "name":"Accordion"
+            }
+        ]
+    }
+{% endschema %}
+
+{% if section.settings.close_inactive_accordions %}
+    <script>
+    // Fetch all the details element.
+    const details = document.querySelectorAll(".detail--{{ section.id }}");
+
+    // Add the onclick listeners.
+    details.forEach((targetDetail) => {
+    targetDetail.addEventListener("click", () => {
+        // Close all the details that are not targetDetail.
+        details.forEach((detail) => {
+        if (detail !== targetDetail) {
+            detail.removeAttribute("open");
+        }
+        });
+    });
+    });
+    </script>
+{% endif %}

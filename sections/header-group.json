@@ -1,0 +1,199 @@
+{
+  "name": "t:sections.header.name",
+  "type": "header",
+  "sections": {
+    "announcement-bar": {
+      "type": "announcement-bar",
+      "blocks": {
+        "announcement-bar-0": {
+          "type": "announcement",
+          "settings": {
+            "text": "Welcome to our store",
+            "link": ""
+          }
+        },
+        "9a2a08db-5117-4d1a-b73a-cc208a063c19": {
+          "type": "announcement",
+          "settings": {
+            "text": "Welcome to our store",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "announcement-bar-0",
+        "9a2a08db-5117-4d1a-b73a-cc208a063c19"
+      ],
+      "settings": {
+        "auto_rotate": true,
+        "change_slides_speed": 3
+      }
+    },
+    "header": {
+      "type": "header",
+      "settings": {
+        "logo_position": "middle-left",
+        "menu": "menu",
+        "menu_type_desktop": "mega",
+        "sticky_header_type": "on-scroll-up",
+        "show_line_separator": true,
+        "color_scheme": "background-1",
+        "menu_color_scheme": "",
+        "enable_country_selector": true,
+        "enable_language_selector": true,
+        "mobile_logo_position": "center",
+        "margin_bottom": 0,
+        "wishlist_page_url": "shopify:\/\/pages\/wishlist",
+        "padding_top": 20,
+        "padding_bottom": 20
+      }
+    },
+    "29597e83-b5df-402e-9c55-1f5773f2d069": {
+      "type": "header-drawer",
+      "settings": {
+        "menu": "main-menu",
+        "padding_top": 40,
+        "padding_bottom": 52
+      }
+    },
+    "cb405230-628a-4089-807a-c8664c7378b9": {
+      "type": "megamenu-item",
+      "blocks": {
+        "96f5c4b2-8f7f-47de-93cb-feccccd2ee43": {
+          "type": "column",
+          "settings": {
+            "link_image": "shopify:\/\/shop_images\/person-stands-on-rocks-poking-out-of-the-ocean-shoreline.jpg",
+            "link_text": "I-series",
+            "link_description": "Lorem ipsum dolor sit amet, consectetur adipiscing",
+            "link_url": ""
+          }
+        },
+        "ecd8f8d0-55af-48c9-823f-1684d9fe87d1": {
+          "type": "column",
+          "settings": {
+            "link_text": "I-series",
+            "link_description": "Lorem ipsum dolor sit amet, consectetur adipiscing",
+            "link_url": ""
+          }
+        },
+        "6cae09e9-97eb-46ad-9c4e-89b60a20c784": {
+          "type": "column",
+          "settings": {
+            "link_text": "I-series",
+            "link_description": "Lorem ipsum dolor sit amet, consectetur adipiscing",
+            "link_url": ""
+          }
+        },
+        "1d6656e5-9246-44d5-93ec-09f72bfee2d7": {
+          "type": "column",
+          "settings": {
+            "link_text": "I-series",
+            "link_description": "Lorem ipsum dolor sit amet, consectetur adipiscing",
+            "link_url": ""
+          }
+        },
+        "87c0ee14-ab14-4e9e-b2c4-05c7e1d686f0": {
+          "type": "column",
+          "settings": {
+            "link_text": "I-series",
+            "link_description": "Lorem ipsum dolor sit amet, consectetur adipiscing",
+            "link_url": ""
+          }
+        },
+        "22d92066-2acf-49a6-9033-12c37a854233": {
+          "type": "column",
+          "settings": {
+            "link_text": "I-series",
+            "link_description": "Lorem ipsum dolor sit amet, consectetur adipiscing",
+            "link_url": ""
+          }
+        },
+        "2849358e-cddb-427c-8572-a8b97ff3d3c4": {
+          "type": "column",
+          "settings": {
+            "link_text": "I-series",
+            "link_description": "Lorem ipsum dolor sit amet, consectetur adipiscing",
+            "link_url": ""
+          }
+        },
+        "3e6be402-ae87-4b83-9a89-e31070a89004": {
+          "type": "column",
+          "settings": {
+            "link_text": "I-series",
+            "link_description": "Lorem ipsum dolor sit amet, consectetur adipiscing",
+            "link_url": ""
+          }
+        }
+      },
+      "block_order": [
+        "96f5c4b2-8f7f-47de-93cb-feccccd2ee43",
+        "ecd8f8d0-55af-48c9-823f-1684d9fe87d1",
+        "6cae09e9-97eb-46ad-9c4e-89b60a20c784",
+        "1d6656e5-9246-44d5-93ec-09f72bfee2d7",
+        "87c0ee14-ab14-4e9e-b2c4-05c7e1d686f0",
+        "22d92066-2acf-49a6-9033-12c37a854233",
+        "2849358e-cddb-427c-8572-a8b97ff3d3c4",
+        "3e6be402-ae87-4b83-9a89-e31070a89004"
+      ],
+      "disabled": true,
+      "settings": {
+        "parent": "Catalog",
+        "heading": "Main Heading",
+        "subheading": "Main Subheading",
+        "image": "shopify:\/\/shop_images\/silver-lamp-on-a-white-table-next-to-books.jpg",
+        "image_heading": "Heading",
+        "image_subheading": "<p>Subheading<\/p>",
+        "image_button_text": "Click",
+        "image_button_link": "shopify:\/\/collections\/all"
+      }
+    },
+    "7a146f3f-997d-4b81-882f-6acfbd99a2c1": {
+      "type": "megamenu-item-demo-1",
+      "settings": {
+        "parent": "Jewellery & Accessories",
+        "heading": "",
+        "subheading": "",
+        "menu": "menu",
+        "image_heading": "",
+        "image_subheading": "",
+        "image_button_text": "",
+        "image_button_link": ""
+      }
+    },
+    "a6ac85cd-b558-4cf8-9f53-accb3b902ecd": {
+      "type": "megamenu-item-demo-1",
+      "settings": {
+        "parent": "Clothing & Shoes",
+        "heading": "",
+        "subheading": "",
+        "menu": "menu",
+        "image_heading": "",
+        "image_subheading": "",
+        "image_button_text": "",
+        "image_button_link": ""
+      }
+    },
+    "9f76b2d6-657b-4613-a0e4-a5d25da00bd5": {
+      "type": "megamenu-item-demo-1",
+      "settings": {
+        "parent": "Home & Living",
+        "heading": "",
+        "subheading": "",
+        "menu": "menu",
+        "image_heading": "",
+        "image_subheading": "",
+        "image_button_text": "",
+        "image_button_link": ""
+      }
+    }
+  },
+  "order": [
+    "announcement-bar",
+    "header",
+    "29597e83-b5df-402e-9c55-1f5773f2d069",
+    "cb405230-628a-4089-807a-c8664c7378b9",
+    "7a146f3f-997d-4b81-882f-6acfbd99a2c1",
+    "a6ac85cd-b558-4cf8-9f53-accb3b902ecd",
+    "9f76b2d6-657b-4613-a0e4-a5d25da00bd5"
+  ]
+}

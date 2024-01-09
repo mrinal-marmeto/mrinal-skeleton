@@ -1,0 +1,47 @@
+{% comment %}
+  Renders a Wishlist Checkbox
+
+    Purpose:
+  - This Liquid code snippet is responsible for rendering a checkbox that represents whether a specific product is in a customer's wishlist.
+  - It checks if the product is present in the customer's wishlist by iterating through the items stored in the 'marmeto.wishlist' metafield of the customer.
+  - If the product is found in the wishlist, it marks the checkbox as checked, allowing the customer to easily manage their wishlist items.
+
+  Accepts:
+  - card_product: {Object} Product Liquid object (optional)
+  - media_aspect_ratio: {String} Size of the product image card. Values are "square" and "portrait". Default is "square" (optional)
+  - image_shape: {String} Image mask to apply to the product image card. Values are "arch", "blob", "chevronleft", "chevronright", "diamond", "parallelogram", and "round". (optional)
+  - show_secondary_image: {Boolean} Show the secondary image on hover. Default: false (optional)
+
+  Usage:
+  {% render 'product-wishlist-checkbox', show_vendor: section.settings.show_vendor %}
+{% endcomment %}
+
+{% liquid 
+    for wishlist_item in customer.metafields.marmeto.wishlist.value
+        if wishlist_item.id == product.id
+            assign in_wishlist = true
+            break
+        endif
+    endfor
+%}
+
+<div class="tw-z-[1] tw-absolute tw-w-12 tw-h-12 tw-top-3 tw-right-4">
+<input type="checkbox" 
+  is="marmeto-wishlist" 
+  {% if in_wishlist %}checked{% endif %} 
+  class="marmeto-wishlist hidden tw-peer" id="wishlist-{{ product.id }}-{{ section.id }}" 
+  name="marmeto-wishlist" value="[{{- customer.id -}}, {{ product.id }}]"
+  data-remove-deselected-wishlist-card="{{ removeDeselectedWishlistCard | default: false }}"
+>
+<label for="wishlist-{{ product.id }}-{{ section.id }}" class="tw-cursor-pointer">
+  {% if removeDeselectedWishlistCard %}
+    <span class="tw-w-12 tw-h-12 tw-block tw-bg-white tw-p-3 tw-rounded-full tw-shadow-md">
+      {% render 'icon-close' %}
+    </span>
+  {% else %}    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+      <path fill="rgba(248, 51, 42, 1)" stroke="transparent" stroke-width="5" d="M34.167 972.362c-11.42 0-19.167 8.92-19.167 20.27 0 19.46 15 27.568 35 39.73 20-12.162 35-20.27 35-39.73 0-11.35-7.747-20.27-19.167-20.27-7.35 0-13.391 4.054-15.833 6.487-2.442-2.433-8.483-6.487-15.833-6.487z" overflow="visible" style="color:#000;enable-background:accumulate" transform="translate(0 -952.362)"/>
+    </svg> 
+  {% endif %}
+</label>
+</div>

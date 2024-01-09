@@ -1,0 +1,106 @@
+<div class="tw-border-b-[0.1rem] tw-border-gray-300">
+  <carousel-component id="carousel--{{ section.id }}"
+  data-desktopPerPage="1"
+  data-mobilePerPage="1"
+  data-autoplay="{{ section.settings.auto_rotate | default: false }}"
+  data-autoplay-speed="{{ section.settings.change_slides_speed | times: 1000 | default: 3000 }}"
+  data-showArrows="{{ section.settings.show_arrows | default: 'true' }}"
+  data-showArrowsOnMobile="{{ section.settings.show_arrows_on_mobile | default: 'true' }}"
+  data-showDots="false"
+  data-showDotsOnMobile="false"
+  
+  data-enableOnMobile="true"
+  data-enableOnDesktop="true"
+  
+  class="{%- if section.blocks.size > 1 -%} splide {%- endif %} page-width tw-block">
+    <div class="splide__track">
+        <ul class="splide__list">
+            {% for block in section.blocks %}
+              <li class="splide__slide tw-relative">
+                <p class="tw-text-center tw-py-4">{{ block.settings.text }}</p>
+                {% if block.settings.link %}
+                  <a
+                    href="{{ block.settings.link }}"
+                    class="tw-absolute tw-top-0 tw-bottom-0 tw-left-0 tw-right-0"
+                  >
+                {% endif %}
+              </li>
+            {% endfor %}
+        </ul>
+    </div>
+  </carousel-component>
+</div>
+
+{% schema %}
+{
+  "name": "t:sections.announcement-bar.name",
+  "max_blocks": 12,
+  "class": "announcement-bar-section",
+  "enabled_on": {
+    "groups": ["header"]
+  },
+  "settings": [
+    {
+      "type": "header",
+      "content": "t:sections.announcement-bar.settings.header__2.content"
+    },
+    {
+      "type": "checkbox",
+      "id": "auto_rotate",
+      "label": "t:sections.announcement-bar.settings.auto_rotate.label",
+      "default": false
+    },
+    {
+      "type": "range",
+      "id": "change_slides_speed",
+      "min": 3,
+      "max": 10,
+      "step": 1,
+      "unit": "s",
+      "label": "t:sections.announcement-bar.settings.change_slides_speed.label",
+      "default": 5
+    },
+    {
+        "type": "checkbox",
+        "id":"show_arrows",
+        "label": "Show arrows on desktop",
+        "default": true
+    },
+    {
+        "type": "checkbox",
+        "id":"show_arrows_on_mobile",
+        "label": "Show arrows on mobile",
+        "default": true
+    }
+  ],
+  "blocks": [
+    {
+      "type": "announcement",
+      "name": "t:sections.announcement-bar.blocks.announcement.name",
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "default": "Welcome to our store",
+          "label": "t:sections.announcement-bar.blocks.announcement.settings.text.label"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "t:sections.announcement-bar.blocks.announcement.settings.link.label"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.announcement-bar.presets.name",
+      "blocks": [
+        {
+          "type": "announcement"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

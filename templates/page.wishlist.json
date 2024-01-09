@@ -1,0 +1,32 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "padding_top": 28,
+        "padding_bottom": 28
+      }
+    },
+    "d7fcde5d-e29a-440a-938a-a4431ac284c0": {
+      "type": "main-wishlist",
+      "settings": {
+        "heading": "My Wishlist",
+        "heading_size": "h1",
+        "text": "",
+        "caption": "",
+        "text_style": "caption-with-letter-spacing",
+        "text_size": "medium",
+        "content_alignment": "center",
+        "enable_infinite_scrolling": true,
+        "padding_top": 40,
+        "padding_bottom": 52,
+        "color_scheme": "background-1"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "d7fcde5d-e29a-440a-938a-a4431ac284c0"
+  ]
+}

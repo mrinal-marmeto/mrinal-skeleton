@@ -1,0 +1,65 @@
+{% comment %}
+    Renders a responsive image
+    Please pass the "sizes" variable if the snippet is not being used for product-card
+
+    Accepts:
+    - src: Image source
+    - alt: {String} Alternative text for image (Optional)
+    - class: {String} Additional classes for the image tag. Default is "image"
+    - width: {String} Size of the image. Values are "small" and "large". If not defined small sizes will be rendered
+    - forloop: {liquid} Forloop liquid object is needed to get the index (Optional)
+    - sizes: {String} Sizes for images at different resolutions for optimized images (Optional)
+
+    Usage:
+    {% render 'lazy-image', 
+      src: featured_media, 
+      forloop: forloop, 
+      sizes: sizes: "(min-width: 1280px) 260px, 50vw" 
+    %}
+{% endcomment %}
+
+{%- if src != nil -%}
+  {%- liquid
+    assign image_source = src
+    assign alt_text = alt | default: image_source.alt
+    assign class_names = 'image' | append: ' ' | append: class
+    assign image_widths = '165, 360, 535, 750, 1070, 1500' | append: image_source.width
+
+    if width == 'large'
+      assign image_widths = '1100, 1200, 1500, 1780, 2000, 3000' | append: image_source.width
+    endif    
+
+    assign loading = "lazy"
+    assign fetchpriority = "auto"
+
+    case template.name
+      when 'index'
+          assign section_lcp_index = 1
+      when 'product'
+          assign section_lcp_index = 1
+      when 'collection'
+          assign section_lcp_index = 2
+    endcase
+
+    if section.location == 'template' and section.index == section_lcp_index and forloop.index == 1
+      assign fetchpriority = "high"
+      assign loading = "eager"
+    elsif section.location == 'template' and section.index <= 3 and forloop.index <= 4
+      assign loading = "eager"
+    endif
+
+    assign sizes = sizes | default: "(min-width: 1280px) 269px, (min-width: 1000px) calc(19.23vw + 27px), (min-width: 760px) calc(50vw - 54px), calc(50vw - 17px)"
+  -%}
+
+  {{ image_source 
+     | image_url: 
+         width: image_source.width 
+     | image_tag: 
+         loading: loading, 
+         fetchpriority: fetchpriority,
+         widths: image_widths, 
+         alt: alt_text,
+         class: class_names,
+         sizes: sizes
+  }}
+{%- endif -%}

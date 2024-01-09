@@ -1,0 +1,25 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* custom base styles */
+carousel-component.slideshow img {
+    @apply tw-object-cover 
+}
+
+/* Hide images, product cards in .splide__slide starting from the second one (index 2 and beyond) */
+.splide:not(.is-initialized) .splide__slide:nth-child(n+2) img {
+    display: none;
+}
+
+.goal-icon-container svg {
+    @apply tw-w-[20px] tw-h-[20px]
+}
+
+shipping-bar-container {
+    @apply tw-min-h-[90px]
+}
+
+.drift-zoom-pane {
+    border-radius: 0 !important;
+}

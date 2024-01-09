@@ -1,0 +1,373 @@
+{{ 'section-main-product.css' | asset_url | stylesheet_tag }}
+{{ 'component-accordion.css' | asset_url | stylesheet_tag }}
+
+<div class="container tw-grid tw-grid-cols-1 divide-y tw-gap-y-16 page-width">
+  <section>
+    <h2 class="tw-pb-2 tw-text-center h1">Typography</h2>
+    <p class="tw-pb-4 tw-text-center">Display different font size and font family going to be used in the theme</p>
+
+    <div class="tw-grid tw-grid-cols-1">
+      <h1 >This is typed in H1</h1>
+      <h2>This is typed in H2</h2>
+      <h3>This is typed in H3</h3>
+      <h4>This is typed in H4</h4>
+      <h5>This is typed in H5</h5>
+      <p>This is body</p>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="tw-pb-2 tw-text-center h1">fonts</h2>
+    <p class="tw-pb-4 tw-text-center">Add according to usage</p>
+
+    <div class="tw-flex tw-flex-col sm:tw-flex-row bsm:tw-text-center">
+      <div class="tw-basis-full sm:tw-basis-1/3 bsm:tw-pt-3">
+        <h3 class="tw-font-primary">Primary tw-font</h3>
+        <small class="tw-pb-4">Theme tw-fonts</small>
+        <p class="tw-font-thin tw-font-primary">font Weights 100</p>
+        <p class="tw-font-primary tw-font-extralight">font Weights 200</p>
+        <p class="tw-font-light tw-font-primary">font Weights 300</p>
+        <p class="tw-font-normal tw-font-primary">font Weights 400</p>
+        <p class="tw-font-medium tw-font-primary">font Weights 500</p>
+        <p class="tw-font-semibold tw-font-primary">font Weights 600</p>
+        <p class="tw-font-bold tw-font-primary">font Weights 700</p>
+        <p class="tw-font-extrabold tw-font-primary">font Weights 800</p>
+        <p class="tw-font-black tw-font-primary">font Weights 900</p>
+      </div>
+      <div class="tw-basis-full sm:tw-basis-1/3 bsm:tw-pt-3">
+        <h3 class="tw-font-secondary">Secondary font</h3>
+        <small class="tw-pb-4">Google fonts</small>
+        <p class="tw-font-thin tw-font-secondary">font Weights 100</p>
+        <p class="tw-font-secondary tw-font-extralight">font Weights 200</p>
+        <p class="tw-font-light tw-font-secondary">font Weights 300</p>
+        <p class="tw-font-normal tw-font-secondary">font Weights 400</p>
+        <p class="tw-font-medium tw-font-secondary">font Weights 500</p>
+        <p class="tw-font-semibold tw-font-secondary">font Weights 600</p>
+        <p class="tw-font-bold tw-font-secondary">font Weights 700</p>
+        <p class="tw-font-extrabold tw-font-secondary">font Weights 800</p>
+        <p class="tw-font-black tw-font-secondary">font Weights 900</p>
+      </div>
+      <div class="tw-basis-full sm:tw-basis-1/3 bsm:tw-pt-3">
+        <h3 class="tw-font-tertiary">Tertiary font</h3>
+        <small class="tw-pb-1 tw-font-tertiary">Custom fonts</small>
+        <small class="tw-pb-4 tw-font-tertiary">Update the font accordingly</small>
+        <p class="tw-font-normal tw-font-tertiary">font Weights 400</p>
+        <p class="tw-italic tw-font-normal tw-font-tertiary">font Weights 400 italic</p>
+        <p class="tw-font-bold tw-font-tertiary ">font Weights 700</p>
+        <p class="tw-italic tw-font-bold tw-font-tertiary">font Weights 700 italic</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="tw-pb-2 tw-text-center h1">Buttons</h2>
+    <p class="tw-pb-4 tw-text-center">Add button design here</p>
+
+    <div class="tw-grid tw-pt-3 tw-pb-3 tw-text-center sm:tw-grid-cols-3">
+      <div>
+        <button class="tw-block tw-mx-auto button button--primary"> Button Primary </button>
+        <p class="tw-pt-3">Class to use <pre>.button--primary</pre></p>
+      </div>
+      <div>
+        <button class="tw-block tw-mx-auto button button--secondary"> Button Secondary </button>
+        <p class="tw-pt-3">Class to use <pre>.button--secondary</pre></p>
+      </div>
+      <div>
+        <button class="tw-block tw-mx-auto button button--tertiary"> Button tertiary </button>
+        <p class="tw-pt-3">Class to use <pre>.button--tertiary</pre></p>
+      </div>
+    </div>
+
+    <p class="tw-pb-4 tw-text-center">Add button disabled Style</p>
+
+    <div class="tw-grid tw-pt-3 tw-pb-3 tw-text-center sm:tw-grid-cols-3">
+      <div>
+        <button class="tw-block tw-mx-auto button button--primary" disabled> Button Primary </button>
+        <p class="tw-pt-3">Attibutes can be use <pre>disabled</pre></p>
+      </div>
+      <div>
+        <button class="tw-block tw-mx-auto button button--secondary disabled"> Button Secondary </button>
+        <p class="tw-pt-3">Class can be use <pre>.button--secondary.disabled</pre></p>
+      </div>
+      <div>
+        <button class="tw-block tw-mx-auto button button--tertiary" aria-disabled='true'> Button tertiary </button>
+        <p class="tw-pt-3">Aria can be use <pre>aria-disabled='true'</pre></p>
+      </div>
+    </div>
+
+    <p class="tw-pb-4 tw-text-center">Add button with icons here</p>
+
+    <div class="tw-grid tw-pt-3 tw-pb-3 tw-text-center sm:tw-grid-cols-3">
+      <div>
+        <button type="button" class="button button--primary button--icons">
+          <!-- Heroicon name: solid/check -->
+          <svg class="button--icons-left" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+          </svg>
+          Publish
+        </button>
+      </div>
+      <div>
+        <button type="button" class="button button--primary button--icons">
+          Publish
+          <!-- Heroicon name: solid/check -->
+          <svg class="button--icons-right" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+          </svg>
+        </button>
+      </div>
+      <div>
+        <button type="button" class="inline-tw-flex items-center button button--secondary group">
+          <!-- Heroicon name: solid/link -->
+          <svg class="w-8 h-8 mr-2 -ml-1 tw-text-blue-700 group-hover:tw-text-white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+            <path fill-rule="evenodd" d="M12.586 4.586a2 2 0 112.828 2.828l-3 3a2 2 0 01-2.828 0 1 1 0 00-1.414 1.414 4 4 0 005.656 0l3-3a4 4 0 00-5.656-5.656l-1.5 1.5a1 1 0 101.414 1.414l1.5-1.5zm-5 5a2 2 0 012.828 0 1 1 0 101.414-1.414 4 4 0 00-5.656 0l-3 3a4 4 0 105.656 5.656l1.5-1.5a1 1 0 10-1.414-1.414l-1.5 1.5a2 2 0 11-2.828-2.828l3-3z" clip-rule="evenodd" />
+          </svg>
+          View
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="tw-pb-2 tw-text-center h1">Colors</h2>
+    <p class="tw-pb-4 tw-text-center">Few colors are already available out of the box <a target="_blank" href="https://tailwindcss.com/docs/background-color">check here for more </a></p>
+
+    <div class="tw-grid tw-pt-3 sm:tw-grid-cols-4">
+      <div class="tw-text-center ">
+        <div class="tw-w-40 tw-h-40 tw-mx-auto tw-text-xl tw-text-white tw-bg-orange-700">Orange</div>
+        <span class="tw-block tw-pt-3">
+          <pre>.tw-bg-orange-700</pre> for the orange
+        </span>
+      </div>
+      <div class="tw-text-center ">
+        <div class="tw-w-40 tw-h-40 tw-mx-auto tw-text-xl tw-text-white tw-bg-lime-500">Lime</div>
+        <span class="tw-block tw-pt-3">
+          <pre>.tw-bg-lime-500</pre> for the lime
+        </span>
+      </div>
+      <div class="tw-text-center ">
+        <div class="tw-w-40 tw-h-40 tw-mx-auto tw-text-xl tw-text-white tw-bg-cyan-500">Cyan</div>
+        <span class="tw-block tw-pt-3">
+          <pre>.tw-bg-cyan-500</pre> for the cyan
+        </span>
+      </div>
+      <div class="tw-text-center ">
+        <div class="tw-w-40 tw-h-40 tw-mx-auto tw-text-xl tw-text-white tw-bg-fuchsia-600">Fuchsia</div>
+        <span class="tw-block tw-pt-3">
+          <pre>.tw-bg-fuchsia-600</pre> for the fuchsia
+        </span>
+      </div>
+    </div>
+
+    <p class="tw-py-4 tw-text-center">Custom Colors can be added through the tailwind.config.js below are example</p>
+
+    <div class="tw-grid tw-pt-3 sm:tw-grid-cols-4">
+      <div class="tw-text-center ">
+        <div class="tw-w-40 tw-h-40 tw-mx-auto tw-text-xl tw-text-white tw-bg-fantastic-red">Red</div>
+        <span class="tw-block tw-pt-3">
+          <pre>.tw-bg-fantastic-red</pre> for the Custom Red
+        </span>
+      </div>
+      <div class="tw-text-center ">
+        <div class="tw-w-40 tw-h-40 tw-mx-auto tw-text-xl tw-text-white tw-bg-fantastic-green">Green</div>
+        <span class="tw-block tw-pt-3">
+          <pre>.tw-bg-fantastic-green</pre> for the Custom Green
+        </span>
+      </div>
+      <div class="tw-text-center ">
+        <div class="tw-w-40 tw-h-40 tw-mx-auto tw-text-xl tw-text-white tw-bg-fantastic-blue">Blue</div>
+        <span class="tw-block tw-pt-3">
+          <pre>.tw-bg-fantastic-blue</pre> for the Custom Blue
+        </span>
+      </div>
+      <div class="tw-text-center ">
+        <div class="tw-w-40 tw-h-40 tw-mx-auto tw-text-xl tw-text-white tw-bg-fantastic-something">Something</div>
+        <span class="tw-block tw-pt-3">
+          <pre>.tw-bg-fantastic-something</pre> for the fantastic something
+        </span>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="tw-pb-2 tw-text-center h1">Accordion</h2>
+
+    <div class="container tw-max-w-2xl">
+      <details class="accordion">
+        <summary>
+          <div class="summary__title">
+              {% render 'icon-accordion', icon: 'plant' %}
+            <h2 class="h4 accordion__title">
+              Plant
+            </h2>
+          </div>
+          {% render 'icon-caret' %}
+        </summary>
+        <div class="accordion__content rte">
+          Plants are predominantly photosynthetic eukaryotes of the kingdom Plantae.
+          Historically, the plant kingdom encompassed all living things that were not
+          animals, and included algae and fungi; however, all current definitions of
+          Plantae exclude the fungi and some algae, as well as the prokaryotes.
+        </div>
+      </details>
+      <details class="accordion">
+        <summary>
+          <div class="summary__title">
+              {% render 'icon-accordion', icon: 'snowflake' %}
+            <h2 class="h4 accordion__title">
+              Snowflake
+            </h2>
+          </div>
+          {% render 'icon-caret' %}
+        </summary>
+        <div class="accordion__content rte">
+          A snowflake is a single ice crystal that has achieved a sufficient size, and
+            may have amalgamated with others, which falls through the Earth's atmosphere
+            as snow. Each flake nucleates around a dust particle in
+            supersaturated air masses by attracting supercooled cloud water droplets,
+            which freeze and accrete in crystal form.
+        </div>
+      </details>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="tw-pb-2 tw-mb-10 tw-text-center h1">Quantity Input</h2>
+
+    <div class="container tw-grid tw-justify-center tw-max-w-2xl tw-gap-4">
+      <quantity-input class="quantity">
+        <input class="quantity__input"
+            type="nutw-mber"
+            name="quantity"
+            min="0"
+            value="1"
+          >
+          <button class="quantity__button no-js-hidden" name="minus" type="button">
+            <span class="visually-hidden">{{ 'products.product.quantity.decrease' | t: product: product.title | escape }}</span>
+            {% render 'icon-minus' %}
+          </button>
+          <button class="quantity__button no-js-hidden" name="plus" type="button">
+            <span class="visually-hidden">{{ 'products.product.quantity.increase' | t: product: product.title | escape }}</span>
+            {% render 'icon-plus' %}
+          </button>
+      </quantity-input>
+
+      <quantity-input class="quantity">
+        <button class="quantity__button no-js-hidden" name="minus" type="button">
+          <span class="visually-hidden">{{ 'products.product.quantity.decrease' | t: product: product.title | escape }}</span>
+          {% render 'icon-minus' %}
+        </button>
+        <input class="quantity__input"
+            type="nutw-mber"
+            name="quantity"
+            min="0"
+            value="1"
+          >
+        <button class="quantity__button no-js-hidden" name="plus" type="button">
+          <span class="visually-hidden">{{ 'products.product.quantity.increase' | t: product: product.title | escape }}</span>
+          {% render 'icon-plus' %}
+        </button>
+      </quantity-input>
+
+      <quantity-input class="quantity">
+        <button class="quantity__button no-js-hidden" name="minus" type="button">
+          <span class="visually-hidden">{{ 'products.product.quantity.decrease' | t: product: product.title | escape }}</span>
+          {% render 'icon-minus' %}
+        </button>
+        <button class="quantity__button no-js-hidden" name="plus" type="button">
+          <span class="visually-hidden">{{ 'products.product.quantity.increase' | t: product: product.title | escape }}</span>
+          {% render 'icon-plus' %}
+        </button>
+        <input class="quantity__input"
+            type="nutw-mber"
+            name="quantity"
+            min="0"
+            value="1"
+            {% comment %} 
+              Form ID can be used to link it with form if its outside the form
+              form="Put same form id here"
+            {% endcomment %}
+          >
+      </quantity-input>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="tw-pb-2 tw-mb-10 tw-text-center h1">Variants Pills</h2>
+
+    {% comment %} Add an existing product handle from the current store {% endcomment %}
+    {% liquid
+        assign product = all_products['um-training']
+        if product == blank 
+          echo "Please select product in page.styleguide.liquid"
+        endif
+    %}
+
+    <div class="container tw-flex tw-flex-wrap tw-justify-center tw-gap-4">
+      <variant-radios class="no-js-hidden" data-section="{{ section.id }}" data-url="{{ product.url }}">
+        <h2 class="tw-mb-6 h2">{{ product.title | capitalize }}</h2>
+        {%- for option in product.options_with_values -%}
+            <fieldset class="js product-form__input">
+              <legend class="form__label">{{ option.name }}</legend>
+              {% assign outer_forloop = forloop %}
+              {%- for value in option.values -%}
+                <input type="radio"
+                      class="js option-{{ outer_forloop.index }}"
+                      id="{{ section.id }}-{{ option.position }}-{{ forloop.index0 }}"
+                      name="{{ option.name }}"
+                      value="{{ value | escape }}"
+                      {% if option.selected_value == value %}checked{% endif %}
+                >
+                <label for="{{ section.id }}-{{ option.position }}-{{ forloop.index0 }}">
+                  {{ value }}
+                </label>
+              {%- endfor -%}
+            </fieldset>
+        {%- endfor -%}
+        <script type="application/json">
+          {{ product.variants | json }}
+        </script>
+      </variant-radios>
+    </div>
+
+  </section>
+
+  <section>
+    <h2 class="tw-pb-2 tw-mb-10 tw-text-center h1">Modal Viewer Popup</h2>
+
+
+    <modal-opener class="product-popup-modal__opener no-js-hidden" data-modal="#PopupModal-1">
+      <button id="ProductPopup-1" class="product-popup-modal__button link" type="button" aria-haspopup="dialog">Popup/Model</button>
+    </modal-opener>
+    <a href="{{ block.settings.page.url }}" class="product-popup-modal__button link no-js">Popup/Model</a>
+
+    <modal-dialog id="PopupModal-1" class="product-popup-modal">
+      <div role="dialog" aria-label="{{ block.settings.text }}" aria-modal="true" class="product-popup-modal__content" tabindex="-1">
+        <button id="ModalClose-1" type="button" class="product-popup-modal__toggle" aria-label="{{ 'accessibility.close' | t }}">{% render 'icon-close' %}</button>
+        <div class="product-popup-modal__content-info">
+          <h1 class="h2">{{ pages['styleguide'].title }}</h1>
+          {{ pages['styleguide'].content }}
+        </div>
+      </div>
+    </modal-dialog>
+  </section>
+
+  <section>
+    <h2 class="tw-pb-2 tw-mb-10 tw-text-center h1">Input Field</h2>
+
+    <form class="tw-flex tw-flex-col tw-gap-4">
+      <div class="field">
+        <input type="email" class="field__input" name="customer[email]" id="CustomerEmail" autocomplete="email" autocorrect="off" autocapitalize="off" placeholder="Email">
+        <label for="CustomerEmail" class="field__label">
+          Email
+        </label>
+      </div>
+      <div class="mt-8 field">
+        <input type="tw-text" class="field__input" name="customer[first_name]" id="firstname" autocomplete="given-name" autocorrect="off" autocapitalize="off" placeholder="First Name">
+        <label for="firstname" class="field__label">
+          Name
+        </label>
+      </div>
+    </form>
+  </section>
+</div>

@@ -1,0 +1,195 @@
+{% comment %}
+  Renders a size chart anchor tag with a dialog
+
+  Accepts:
+  - product: {Object} Product Liquid object (Required)
+
+  Functionality:
+  - size-chart.js
+
+  Instructions:
+  1. Create a product level metafield "product.metafields.marmeto.size_chart". 
+  2. Create a size chart page and link it to the product's metafield.
+
+  Usage:
+  {% render 'size-chart', product: product %}
+{% endcomment %}
+
+{% liquid
+  assign product_form_id = 'product-form-size-chart-' | append: section.id
+  assign size_chart_type = section.settings.size_chart_type
+
+  case size_chart_type 
+    when 'drawer'
+      assign dialog_toggle_class = 'tw-translate-x-full'
+      assign dialog_initial_animation_class = 'tw-translate-x-full tw-transition-transform tw-h-full tw-min-h-full tw-mt-0 tw-mr-0'
+    when 'popup'
+      assign dialog_toggle_class = 'tw-scale-0 tw-opacity-0'
+      assign dialog_initial_animation_class = 'tw-scale-0 tw-opacity-0 tw-transition-all'
+  endcase 
+%}
+
+{% unless size_chart_type == 'page' %}
+  <script src="{{ 'size-chart.js' | asset_url }}" defer="defer"></script>
+
+  <dialog id="size-chart" 
+          is="marmeto-drawer" 
+          data-toggle-class="{{ dialog_toggle_class }}"
+          data-close-selector='[trigger="close"]'
+          class="{{ dialog_initial_animation_class }} tw-min-w-[50vw]"
+  >
+      <div class="tw-grid tw-grid-rows-[100px_auto_auto_1fr] tw-gap-10 tw-h-full tw-p-6 tw-max-w-6xl tw-m-auto tw-w-full">
+          <div class="tw-relative">
+              <button
+              class="drawer__close"
+              trigger="close"
+              type="button"
+              aria-label="{{ 'accessibility.close' | t }}"
+              >
+              X
+            </button>
+          </div>
+
+          <div class="size-chart-product-card tw-grid tw-grid-cols-[15rem_1fr] tw-gap-10">
+            {% render 'lazy-image', src: product.featured_image, class: 'js size-chart-product-image' %}
+            <div class="card-content">
+              <h3>{{ product.title }}</h3>
+              <div class="no-js-hidden" id="size-chart-product-price-{{ section.id }}" role="status">
+                {%- render 'price',
+                  product: product,
+                  use_variant: true,
+                  show_badges: true,
+                  price_class: 'price--large'
+                -%}
+              </div>
+              </price-sync>
+            </div>
+          </div>
+
+          <measurement-unit-toggler 
+            data-target="#variant-radios-sync" 
+            class="tw-w-[76px] tw-h-[28px] tw-rounded-[1.4rem] tw-border tw-border-gray-800 tw-flex tw-justify-center tw-items-center tw-ml-auto tw-font-[source-sans-pro] tw-text-[14px] tw-leading-[1.29rem] tw-text-gray-800"
+          >
+            <input class="[&:checked+label]:tw-bg-black [&:checked+label]:tw-text-white tw-w-0 tw-h-0" type="radio" id="in" name="radio" class="checkbox tw-h-0 tw-w-0" checked="">
+            <label 
+              class="tw-w-[36px] tw-h-[24px] tw-rounded-[1.4rem] tw-flex tw-justify-center tw-items-center tw-cursor-pointer"
+              for="in"
+            >
+              in
+            </label>
+            <input class="[&:checked+label]:tw-bg-black [&:checked+label]:tw-text-white tw-w-0 tw-h-0" type="radio" id="cm" name="radio" class="checkbox tw-h-0 tw-w-0">
+            <label
+              class="tw-w-[36px] tw-h-[24px] tw-rounded-[1.4rem] tw-flex tw-justify-center tw-items-center tw-cursor-pointer"
+              for="cm"
+            >
+              cm
+            </label>
+          </measurement-unit-toggler>
+
+          <div class="size-chart-content">
+            <tabbed-content class="tw-block tw-mt-8 {{ section.settings.content_alignment }}">
+              {% comment %} tab heading go here {% endcomment %}
+              <tab-headings class="tw-block">
+                  <tab data-active
+                    class="tw-cursor-pointer tw-px-4 data-[active]:tw-bg-[rgb(var(--color-foreground))] tw-py-2 data-[active]:tw-text-[rgb(var(--color-background))] tw-rounded-full" 
+                    data-tab="size-chart">
+                    Size Chart
+                  </tab>
+                  <tab
+                    class="tw-cursor-pointer tw-px-4 data-[active]:tw-bg-[rgb(var(--color-foreground))] tw-py-2 data-[active]:tw-text-[rgb(var(--color-background))] tw-rounded-full" 
+                    data-tab="how-to-measure">
+                    How to measure
+                  </tab>
+              </tab-headings>
+              {% comment %} tab contents go here {% endcomment %}
+              <tab-contents class="tw-block tw-relative tw-mt-4">
+                <tab 
+                  data-active
+                  data-tab="size-chart" 
+                  class="tw-hidden data-[active]:tw-block"
+                >
+                  <form is="variant-radios-sync" 
+                    id="variant-radios-sync"
+                    class="product-form__input !tw-max-w-none"
+                    data-section="{{ section.id }}"
+                    data-size-option-position="
+                    {{- product.options_by_name['size'].position | default: product.options_by_name['Size'].position -}}"
+                  >
+                    <!-- Size chart content gets inserted here -->
+                    </form>
+                  </tab>
+                  <tab 
+                    data-tab="how-to-measure" 
+                    class="tw-hidden data-[active]:tw-block">
+                  
+                    <!-- How to measure image content gets inserted here -->
+                </tab>
+              </tab-contents>
+            </tabbed-content>
+          </div>
+
+          <product-form>
+              {%- form 'product',
+                product,
+                id: product_form_id,
+                class: 'form',
+                novalidate: 'novalidate',
+                data-type: 'add-to-cart-form'
+              -%}
+                <input
+                  type="hidden"
+                  name="id"
+                  value="{{ product.selected_or_first_available_variant.id }}"
+                  disabled
+                >
+                <button
+                  is="size-chart-add-button"
+                  id="{{ product_form_id }}-submit"
+                  type="submit"
+                  name="add"
+                  class="quick-add__submit button button--full-width{% if horizontal_quick_add %} card--horizontal__quick-add{% endif %}"
+                  aria-haspopup="dialog"
+                  aria-labelledby="{{ product_form_id }}-submit title-{{ section_id }}-{{ product.id }}"
+                  aria-live="polite"
+                  data-sold-out-message="true"
+                  {% if product.selected_or_first_available_variant.available == false %}
+                    disabled
+                  {% endif %}
+                >
+                  <span>
+                    {%- if product.selected_or_first_available_variant.available -%}
+                      {{ 'products.product.add_to_cart' | t }}
+                    {%- else -%}
+                      {{ 'products.product.sold_out' | t }}
+                    {%- endif -%}
+                  </span>
+                  <span class="sold-out-message hidden">
+                    {{ 'products.product.sold_out' | t }}
+                  </span>
+                  {%- if horizontal_quick_add -%}
+                    <span class="icon-wrap">{% render 'icon-plus' %}</span>
+                  {%- endif -%}
+                  <div class="loading-overlay__spinner hidden">
+                    <svg
+                      aria-hidden="true"
+                      focusable="false"
+                      class="spinner"
+                      viewBox="0 0 66 66"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <circle class="path" fill="none" stroke-width="6" cx="33" cy="33" r="30"></circle>
+                    </svg>
+                  </div>
+                </button>
+              {%- endform -%}
+            </product-form>
+      </div>
+  </dialog>
+{% endunless %}
+
+<a href="{{ product.metafields.marmeto.size_chart.value.url }}" 
+    is="size-chart"
+    class="tw-block tw-text-right"
+>
+    Size chart
+</a>

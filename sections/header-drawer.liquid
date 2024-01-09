@@ -1,0 +1,58 @@
+
+{%- capture lazy_load_section %}
+  {%- render 'lazy-load-section-validations' -%}
+{%- endcapture -%}
+
+{% if lazy_load_section != blank %}
+  <lazy-section data-trigger-target="[aria-controls='menu-drawer']" data-trigger-event="click">
+{% endif %}
+
+{% if lazy_load_section == blank %}
+
+  <javascript-injected-section-hamburger style="display:none" data-target-location="#menu-drawer">
+    {% render 'header-drawer-inner' %}
+  </javascript-injected-section-hamburger>
+{% endif %}       
+       
+{% if lazy_load_section != blank %}
+    </lazy-section>
+{% endif %}
+
+{% schema %}
+    {
+      "name": "Header Drawer",
+      "settings": [
+        {
+            "type": "link_list",
+            "id": "menu",
+            "default": "main-menu",
+            "label": "t:sections.header.settings.menu.label"
+        },
+        {
+          "type": "range",
+          "id": "padding_top",
+          "min": 0,
+          "max": 100,
+          "step": 4,
+          "unit": "px",
+          "label": "t:sections.all.padding.padding_top",
+          "default": 40
+        },
+        {
+          "type": "range",
+          "id": "padding_bottom",
+          "min": 0,
+          "max": 100,
+          "step": 4,
+          "unit": "px",
+          "label": "t:sections.all.padding.padding_bottom",
+          "default": 52
+        }
+      ],
+      "presets": [
+        {
+            "name":"Header Drawer"
+        }
+      ]
+    }
+    {% endschema %}
