@@ -17,27 +17,20 @@ jobs:
             const hour = new Date().getHours();
             const isOffWorkHours = (dayOfWeek === 0 || dayOfWeek === 6) || (dayOfWeek > 0 && dayOfWeek < 6 && (hour < 10 || hour > 20));
             if (isOffWorkHours) {
-              core.setFailed('Pull request raised outside of work hours');
-              return { result: 'failure' };
+              const { context } = github;
+              const { payload } = context;
+              const { pull_request } = payload;
+              const { number } = pull_request;
+              github.issues.createComment({
+                ...context.repo,
+                issue_number: number,
+                body: 'Pull request raised outside of work hours. Please raise the pull request during work hours.'
+              });
+              github.pulls.update({
+                ...context.repo,
+                pull_number: number,
+                state: 'closed'
+              });
             }
             return { result: 'success' };
 
-      - name: Comment and close pull request
-        if: steps.check-work-hours.outputs.result == 'failure'
-        uses: actions/github-script@v5
-        with:
-          script: |
-            const { context } = github;
-            const { payload } = context;
-            const { pull_request } = payload;
-            const { number } = pull_request;
-            github.issues.createComment({
-              ...context.repo,
-              issue_number: number,
-              body: 'Pull request raised outside of work hours. Please raise the pull request during work hours.'
-            });
-            github.pulls.update({
-              ...context.repo,
-              pull_number: number,
-              state: 'closed'
-            });
