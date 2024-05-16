@@ -18,7 +18,9 @@ jobs:
             const isOffWorkHours = (dayOfWeek === 0 || dayOfWeek === 6) || (dayOfWeek > 0 && dayOfWeek < 6 && (hour < 10 || hour > 20));
             if (isOffWorkHours) {
               core.setFailed('Pull request raised outside of work hours');
+              return { result: 'failure' };
             }
+            return { result: 'success' };
 
       - name: Comment and close pull request
         if: steps.check-work-hours.outputs.result == 'failure'
