@@ -1,36 +1,26 @@
-name: Block pull requests outside of work hours
-
+name: Block Merge Based on Time
 on:
   pull_request:
-    types: [opened, synchronize]
+    types:
+      - opened
+      - reopened
+      - synchronize
+      - labeled
+      - unlabeled
+  schedule:
+    - cron: "*/30 * * * *"
 
 jobs:
-  check-work-hours:
+  block:
     runs-on: ubuntu-latest
     steps:
-      - name: Check work hours
-        id: check-work-hours
-        uses: actions/github-script@v5
+      - uses: yykamei/block-merge-based-on-time@main
+        id: block
         with:
-          script: |
-            const dayOfWeek = new Date().getDay();
-            const hour = new Date().getHours();
-            const isOffWorkHours = (dayOfWeek === 0 || dayOfWeek === 6) || (dayOfWeek > 0 && dayOfWeek < 6 && (hour < 10 || hour > 20));
-            if (isOffWorkHours) {
-              const { context } = github;
-              const { payload } = context;
-              const { pull_request } = payload;
-              const { number } = pull_request;
-              github.issues.createComment({
-                ...context.repo,
-                issue_number: number,
-                body: 'Pull request raised outside of work hours. Please raise the pull request during work hours.'
-              });
-              github.pulls.update({
-                ...context.repo,
-                pull_number: number,
-                state: 'closed'
-              });
-            }
-            return { result: 'success' };
-
+          timezone: Pacific/Honolulu
+          after: "17:30, 16:30 on Monday"
+          before: 09:00
+          base-branches: "(default)"
+          prohibited-days-dates: "Sunday, Monday, 2021-10-01, 2021-12-29/2022-01-04, H:United States, BH:United States"
+      - run: echo pr-blocked=${{ steps.block.outputs.pr-blocked }}
+        if: github.event_name == 'pull_request'
